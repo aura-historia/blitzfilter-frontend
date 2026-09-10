@@ -3,403 +3,355 @@
 import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { addWatchlistProduct, adminDeleteUser, adminGetPartnerApplication, adminGetPartnerApplications, adminGetUser, adminPatchPartnerApplication, adminPatchUser, adminPostPartnerApplicationDecision, adminSearchUsers, complexSearchProducts, createUserSearchFilter, deleteAllNotifications, deleteMyAccessToken, deleteNotification, deleteOAuthClient, deletePartnerApplication, deletePartnerProduct, deleteUser, deleteUserSearchFilter, deleteWatchlistProduct, getCategories, getCategoryById, getMyAccessToken, getMyAccessTokens, getMyPartnerShops, getNotifications, getOAuthClient, getOAuthClients, getPartnerApplication, getPartnerApplications, getPeriodById, getPeriods, getProduct, getProductBySlug, getProductHistory, getSearchFilterMatches, getSearchFilterPreviewProducts, getShopByDomain, getShopById, getShopBySlug, getSimilarProducts, getUserAccount, getUserSearchFilter, getUserSearchFilters, getWatchlistProducts, oauthAuthorize, oauthIntrospect, oauthRevoke, oauthToken, oauthTokenByThirdPartyCode, type Options, patchAllNotifications, patchMyAccessToken, patchNotification, patchOAuthClient, patchPartnerApplication, patchPartnerProducts, patchShopById, patchWatchlistProduct, postBillingCheckout, postBillingManage, postBillingPortal, postMyAccessToken, postOAuthClient, postPartnerApplication, postPartnerProducts, postShop, postWoocommerceWebhook, putNewsletterSubscription, putPartnerProducts, searchCategories, searchPeriods, searchShops, simpleSearchProducts, simpleSearchShops, updateSearchFilterMatchFeedback, updateUserAccount, updateUserSearchFilter } from '../sdk.gen';
-import type { AddWatchlistProductData, AddWatchlistProductError, AddWatchlistProductResponse, AdminDeleteUserData, AdminDeleteUserError, AdminDeleteUserResponse, AdminGetPartnerApplicationData, AdminGetPartnerApplicationError, AdminGetPartnerApplicationResponse, AdminGetPartnerApplicationsData, AdminGetPartnerApplicationsError, AdminGetPartnerApplicationsResponse, AdminGetUserData, AdminGetUserError, AdminGetUserResponse, AdminPatchPartnerApplicationData, AdminPatchPartnerApplicationError, AdminPatchPartnerApplicationResponse, AdminPatchUserData, AdminPatchUserError, AdminPatchUserResponse, AdminPostPartnerApplicationDecisionData, AdminPostPartnerApplicationDecisionError, AdminPostPartnerApplicationDecisionResponse, AdminSearchUsersData, AdminSearchUsersError, AdminSearchUsersResponse, ComplexSearchProductsData, ComplexSearchProductsError, ComplexSearchProductsResponse, CreateUserSearchFilterData, CreateUserSearchFilterError, CreateUserSearchFilterResponse, DeleteAllNotificationsData, DeleteAllNotificationsError, DeleteAllNotificationsResponse, DeleteMyAccessTokenData, DeleteMyAccessTokenError, DeleteMyAccessTokenResponse, DeleteNotificationData, DeleteNotificationError, DeleteNotificationResponse, DeleteOAuthClientData, DeleteOAuthClientError, DeleteOAuthClientResponse, DeletePartnerApplicationData, DeletePartnerApplicationError, DeletePartnerApplicationResponse, DeletePartnerProductData, DeletePartnerProductError, DeletePartnerProductResponse, DeleteUserData, DeleteUserError, DeleteUserResponse, DeleteUserSearchFilterData, DeleteUserSearchFilterError, DeleteUserSearchFilterResponse, DeleteWatchlistProductData, DeleteWatchlistProductError, DeleteWatchlistProductResponse, GetCategoriesData, GetCategoriesError, GetCategoriesResponse, GetCategoryByIdData, GetCategoryByIdError, GetCategoryByIdResponse, GetMyAccessTokenData, GetMyAccessTokenError, GetMyAccessTokenResponse, GetMyAccessTokensData, GetMyAccessTokensError, GetMyAccessTokensResponse, GetMyPartnerShopsData, GetMyPartnerShopsError, GetMyPartnerShopsResponse, GetNotificationsData, GetNotificationsError, GetNotificationsResponse, GetOAuthClientData, GetOAuthClientError, GetOAuthClientResponse, GetOAuthClientsData, GetOAuthClientsError, GetOAuthClientsResponse, GetPartnerApplicationData, GetPartnerApplicationError, GetPartnerApplicationResponse, GetPartnerApplicationsData, GetPartnerApplicationsError, GetPartnerApplicationsResponse, GetPeriodByIdData, GetPeriodByIdError, GetPeriodByIdResponse, GetPeriodsData, GetPeriodsError, GetPeriodsResponse, GetProductBySlugData, GetProductBySlugError, GetProductBySlugResponse, GetProductData2, GetProductError, GetProductHistoryData, GetProductHistoryError, GetProductHistoryResponse, GetProductResponse, GetSearchFilterMatchesData, GetSearchFilterMatchesError, GetSearchFilterMatchesResponse, GetSearchFilterPreviewProductsData, GetSearchFilterPreviewProductsError, GetSearchFilterPreviewProductsResponse, GetShopByDomainData, GetShopByDomainError, GetShopByDomainResponse, GetShopByIdData, GetShopByIdError, GetShopByIdResponse, GetShopBySlugData, GetShopBySlugError, GetShopBySlugResponse, GetSimilarProductsData, GetSimilarProductsError, GetSimilarProductsResponse, GetUserAccountData2, GetUserAccountError, GetUserAccountResponse, GetUserSearchFilterData, GetUserSearchFilterError, GetUserSearchFilterResponse, GetUserSearchFiltersData, GetUserSearchFiltersError, GetUserSearchFiltersResponse, GetWatchlistProductsData, GetWatchlistProductsError, GetWatchlistProductsResponse, OauthAuthorizeData, OauthAuthorizeError, OauthIntrospectData, OauthIntrospectError, OauthIntrospectResponse, OauthRevokeData, OauthRevokeError, OauthTokenByThirdPartyCodeData, OauthTokenByThirdPartyCodeError, OauthTokenByThirdPartyCodeResponse, OauthTokenData, OauthTokenError, OauthTokenResponse, PatchAllNotificationsData, PatchAllNotificationsError, PatchAllNotificationsResponse, PatchMyAccessTokenData, PatchMyAccessTokenError, PatchMyAccessTokenResponse, PatchNotificationData2, PatchNotificationError, PatchNotificationResponse, PatchOAuthClientData, PatchOAuthClientError, PatchOAuthClientResponse, PatchPartnerApplicationData, PatchPartnerApplicationError, PatchPartnerApplicationResponse, PatchPartnerProductsData, PatchPartnerProductsError, PatchPartnerProductsResponse, PatchShopByIdData, PatchShopByIdError, PatchShopByIdResponse, PatchWatchlistProductData, PatchWatchlistProductError, PatchWatchlistProductResponse, PostBillingCheckoutData2, PostBillingCheckoutError, PostBillingCheckoutResponse, PostBillingManageData, PostBillingManageError, PostBillingManageResponse, PostBillingPortalData, PostBillingPortalError, PostBillingPortalResponse, PostMyAccessTokenData, PostMyAccessTokenError, PostMyAccessTokenResponse, PostOAuthClientData, PostOAuthClientError, PostOAuthClientResponse, PostPartnerApplicationData, PostPartnerApplicationError, PostPartnerApplicationResponse, PostPartnerProductsData, PostPartnerProductsError, PostPartnerProductsResponse, PostShopData2, PostShopError, PostShopResponse, PostWoocommerceWebhookData, PostWoocommerceWebhookError, PutNewsletterSubscriptionData2, PutNewsletterSubscriptionError, PutNewsletterSubscriptionResponse, PutPartnerProductsData, PutPartnerProductsError, PutPartnerProductsResponse, SearchCategoriesData, SearchCategoriesError, SearchCategoriesResponse, SearchPeriodsData, SearchPeriodsError, SearchPeriodsResponse, SearchShopsData, SearchShopsError, SearchShopsResponse, SimpleSearchProductsData, SimpleSearchProductsError, SimpleSearchProductsResponse, SimpleSearchShopsData, SimpleSearchShopsError, SimpleSearchShopsResponse, UpdateSearchFilterMatchFeedbackData, UpdateSearchFilterMatchFeedbackError, UpdateSearchFilterMatchFeedbackResponse, UpdateUserAccountData, UpdateUserAccountError, UpdateUserAccountResponse, UpdateUserSearchFilterData, UpdateUserSearchFilterError, UpdateUserSearchFilterResponse } from '../types.gen';
+import { addWatchlistProduct, adminCreateListingSource, adminCreateOAuthClient, adminCreateParty, adminDecidePartnershipApplication, adminDeleteListingSource, adminDeleteOAuthClient, adminDeleteParty, adminDeleteUser, adminDeleteUserAccessToken, adminDeleteUserAccessTokens, adminDissolvePartnership, adminGetListingSource, adminGetOAuthClient, adminGetPartnership, adminGetPartnershipApplication, adminGetParty, adminGetUser, adminGrantPartnershipListingSource, adminGrantPartnershipMembership, adminListOAuthClients, adminListUserAccessTokens, adminMarkPartnershipApplicationInReview, adminPatchOAuthClient, adminPatchUser, adminRevokePartnershipListingSource, adminRevokePartnershipMembership, adminRevokeUserSessions, adminSearchListingSources, adminSearchParties, adminSearchPartnershipApplications, adminSearchPartnerships, adminSearchUsers, adminSuspendUser, adminUnsuspendUser, adminUpdateListingSource, adminUpdateParty, createUserSearchFilter, deleteMyAccessToken, deleteNotification, deleteNotifications, deleteOwnPartnershipApplication, deletePartnerProductListings, deleteUser, deleteUserSearchFilter, deleteWatchlistProduct, getAdminOverview, getListingSourceBySlug, getMyAccessToken, getMyAccessTokens, getMyListingSources, getMyPartnershipApplications, getOwnPartnershipApplication, getProductListing, getProductListingByTitleSlug, getProductListingHistory, getSimilarProductListings, getUserAccount, getUserSearchFilter, getUserSearchFilters, getWatchlistProductListings, listNotifications, listSearchFilterMatches, oauthAuthorize, oauthIntrospect, oauthRevoke, oauthToken, oauthTokenByThirdPartyCode, type Options, patchMyAccessToken, patchPartnerProductListings, patchWatchlistProduct, postBillingCheckout, postBillingManage, postBillingPortal, postMyAccessToken, postPartnerProductListings, postPartnershipApplication, postWoocommerceWebhook, putNewsletterSubscription, putPartnerProductListings, simpleSearchProductListings, updateAllNotificationsSeen, updateNotificationSeen, updateNotificationsSeen, updateSearchFilterMatchFeedback, updateUserAccount, updateUserSearchFilter } from '../sdk.gen';
+import type { AddWatchlistProductData, AddWatchlistProductError, AddWatchlistProductResponse, AdminCreateListingSourceData, AdminCreateListingSourceError, AdminCreateListingSourceResponse, AdminCreateOAuthClientData, AdminCreateOAuthClientError, AdminCreateOAuthClientResponse, AdminCreatePartyData, AdminCreatePartyError, AdminCreatePartyResponse, AdminDecidePartnershipApplicationData, AdminDecidePartnershipApplicationError, AdminDecidePartnershipApplicationResponse, AdminDeleteListingSourceData, AdminDeleteListingSourceError, AdminDeleteListingSourceResponse, AdminDeleteOAuthClientData, AdminDeleteOAuthClientError, AdminDeleteOAuthClientResponse, AdminDeletePartyData, AdminDeletePartyError, AdminDeletePartyResponse, AdminDeleteUserAccessTokenData, AdminDeleteUserAccessTokenError, AdminDeleteUserAccessTokenResponse, AdminDeleteUserAccessTokensData, AdminDeleteUserAccessTokensError, AdminDeleteUserAccessTokensResponse, AdminDeleteUserData, AdminDeleteUserError, AdminDeleteUserResponse, AdminDissolvePartnershipData, AdminDissolvePartnershipError, AdminDissolvePartnershipResponse, AdminGetListingSourceData, AdminGetListingSourceError, AdminGetListingSourceResponse, AdminGetOAuthClientData, AdminGetOAuthClientError, AdminGetOAuthClientResponse, AdminGetPartnershipApplicationData, AdminGetPartnershipApplicationError, AdminGetPartnershipApplicationResponse, AdminGetPartnershipData, AdminGetPartnershipError, AdminGetPartnershipResponse, AdminGetPartyData, AdminGetPartyError, AdminGetPartyResponse, AdminGetUserData, AdminGetUserError, AdminGetUserResponse, AdminGrantPartnershipListingSourceData, AdminGrantPartnershipListingSourceError, AdminGrantPartnershipListingSourceResponse, AdminGrantPartnershipMembershipData, AdminGrantPartnershipMembershipError, AdminGrantPartnershipMembershipResponse, AdminListOAuthClientsData, AdminListOAuthClientsError, AdminListOAuthClientsResponse, AdminListUserAccessTokensData, AdminListUserAccessTokensError, AdminListUserAccessTokensResponse, AdminMarkPartnershipApplicationInReviewData, AdminMarkPartnershipApplicationInReviewError, AdminMarkPartnershipApplicationInReviewResponse, AdminPatchOAuthClientData, AdminPatchOAuthClientError, AdminPatchOAuthClientResponse, AdminPatchUserData, AdminPatchUserError, AdminPatchUserResponse, AdminRevokePartnershipListingSourceData, AdminRevokePartnershipListingSourceError, AdminRevokePartnershipListingSourceResponse, AdminRevokePartnershipMembershipData, AdminRevokePartnershipMembershipError, AdminRevokePartnershipMembershipResponse, AdminRevokeUserSessionsData, AdminRevokeUserSessionsError, AdminRevokeUserSessionsResponse, AdminSearchListingSourcesData, AdminSearchListingSourcesError, AdminSearchListingSourcesResponse, AdminSearchPartiesData, AdminSearchPartiesError, AdminSearchPartiesResponse, AdminSearchPartnershipApplicationsData, AdminSearchPartnershipApplicationsError, AdminSearchPartnershipApplicationsResponse, AdminSearchPartnershipsData, AdminSearchPartnershipsError, AdminSearchPartnershipsResponse, AdminSearchUsersData, AdminSearchUsersError, AdminSearchUsersResponse, AdminSuspendUserData, AdminSuspendUserError, AdminSuspendUserResponse, AdminUnsuspendUserData, AdminUnsuspendUserError, AdminUnsuspendUserResponse, AdminUpdateListingSourceData, AdminUpdateListingSourceError, AdminUpdateListingSourceResponse, AdminUpdatePartyData, AdminUpdatePartyError, AdminUpdatePartyResponse, CreateUserSearchFilterData, CreateUserSearchFilterError, CreateUserSearchFilterResponse, DeleteMyAccessTokenData, DeleteMyAccessTokenError, DeleteMyAccessTokenResponse, DeleteNotificationData, DeleteNotificationError, DeleteNotificationResponse, DeleteNotificationsData, DeleteNotificationsError, DeleteNotificationsResponse, DeleteOwnPartnershipApplicationData, DeleteOwnPartnershipApplicationError, DeleteOwnPartnershipApplicationResponse, DeletePartnerProductListingsData, DeletePartnerProductListingsError, DeletePartnerProductListingsResponse, DeleteUserData, DeleteUserError, DeleteUserResponse, DeleteUserSearchFilterData, DeleteUserSearchFilterError, DeleteUserSearchFilterResponse, DeleteWatchlistProductData, DeleteWatchlistProductError, DeleteWatchlistProductResponse, GetAdminOverviewData, GetAdminOverviewError, GetAdminOverviewResponse, GetListingSourceBySlugData, GetListingSourceBySlugError, GetListingSourceBySlugResponse, GetMyAccessTokenData, GetMyAccessTokenError, GetMyAccessTokenResponse, GetMyAccessTokensData, GetMyAccessTokensError, GetMyAccessTokensResponse, GetMyListingSourcesData, GetMyListingSourcesError, GetMyListingSourcesResponse, GetMyPartnershipApplicationsData, GetMyPartnershipApplicationsError, GetMyPartnershipApplicationsResponse, GetOwnPartnershipApplicationData, GetOwnPartnershipApplicationError, GetOwnPartnershipApplicationResponse, GetProductListingByTitleSlugData, GetProductListingByTitleSlugError, GetProductListingByTitleSlugResponse, GetProductListingData, GetProductListingError, GetProductListingHistoryData, GetProductListingHistoryError, GetProductListingHistoryResponse, GetProductListingResponse, GetSimilarProductListingsData, GetSimilarProductListingsError, GetSimilarProductListingsResponse, GetUserAccountData, GetUserAccountError, GetUserAccountResponse, GetUserSearchFilterData, GetUserSearchFilterError, GetUserSearchFilterResponse, GetUserSearchFiltersData, GetUserSearchFiltersError, GetUserSearchFiltersResponse, GetWatchlistProductListingsData, GetWatchlistProductListingsError, GetWatchlistProductListingsResponse, ListNotificationsData, ListNotificationsError, ListNotificationsResponse, ListSearchFilterMatchesData, ListSearchFilterMatchesError, ListSearchFilterMatchesResponse, OauthAuthorizeData, OauthAuthorizeError, OauthIntrospectData, OauthIntrospectError, OauthIntrospectResponse, OauthRevokeData, OauthRevokeError, OauthTokenByThirdPartyCodeData, OauthTokenByThirdPartyCodeError, OauthTokenByThirdPartyCodeResponse, OauthTokenData, OauthTokenError, OauthTokenResponse, PatchMyAccessTokenData, PatchMyAccessTokenError, PatchMyAccessTokenResponse, PatchPartnerProductListingsData, PatchPartnerProductListingsError, PatchPartnerProductListingsResponse, PatchWatchlistProductData, PatchWatchlistProductError, PatchWatchlistProductResponse, PostBillingCheckoutData2, PostBillingCheckoutError, PostBillingCheckoutResponse, PostBillingManageData, PostBillingManageError, PostBillingManageResponse, PostBillingPortalData, PostBillingPortalError, PostBillingPortalResponse, PostMyAccessTokenData, PostMyAccessTokenError, PostMyAccessTokenResponse, PostPartnerProductListingsData, PostPartnerProductListingsError, PostPartnerProductListingsResponse, PostPartnershipApplicationData, PostPartnershipApplicationError, PostPartnershipApplicationResponse, PostWoocommerceWebhookData, PostWoocommerceWebhookError, PostWoocommerceWebhookResponse, PutNewsletterSubscriptionData2, PutNewsletterSubscriptionError, PutNewsletterSubscriptionResponse, PutPartnerProductListingsData, PutPartnerProductListingsError, PutPartnerProductListingsResponse, SimpleSearchProductListingsData, SimpleSearchProductListingsError, SimpleSearchProductListingsResponse, UpdateAllNotificationsSeenData, UpdateAllNotificationsSeenError, UpdateAllNotificationsSeenResponse, UpdateNotificationSeenData2, UpdateNotificationSeenError, UpdateNotificationSeenResponse, UpdateNotificationsSeenData2, UpdateNotificationsSeenError, UpdateNotificationsSeenResponse, UpdateSearchFilterMatchFeedbackData, UpdateSearchFilterMatchFeedbackError, UpdateSearchFilterMatchFeedbackResponse, UpdateUserAccountData, UpdateUserAccountError, UpdateUserAccountResponse, UpdateUserSearchFilterData, UpdateUserSearchFilterError, UpdateUserSearchFilterResponse } from '../types.gen';
 
 /**
- * Batch update products (Partner API)
+ * Batch delete product-listings (Partner API)
  *
- * Updates one or more existing products for a shop using bearer authentication.
- * This endpoint is intended for partner shops and accepts:
- * - a Cognito bearer token for the partner user linked to the shop, or
- * - an Aura Historia access token owned by that partner user.
+ * Soft-deletes product-listings for a listing source. Each entry writes its product lifecycle delete event and
+ * materialized PostgreSQL state synchronously in its own transaction.
  *
- * Aura Historia access tokens on this endpoint must include the `products:write` scope.
+ * Allowed callers are Aura Historia admins and users partnered with the target listing source. Aura
+ * Historia access tokens must include the `product-listings:write` scope.
  *
- * The request body is an array of `PatchProductData` objects. Only the fields provided in
- * each entry are updated; omitted optional fields are left unchanged. Each entry is forwarded
- * individually to the asynchronous partner-product ingestion queue.
- *
- * The response returns HTTP 202 with an array containing only the `shopsProductId` values
- * that failed to be forwarded to the queue. An empty array indicates that all updates were
- * accepted for asynchronous processing. Because persistence happens asynchronously, acceptance
- * does not guarantee that the referenced product currently exists or that the update will
- * later succeed.
+ * The request body is an array of product identifiers. The response returns HTTP 200 with
+ * failures as `{ listingSourceId, sourceListingId, error }` objects when one or more entries succeed.
+ * `error` is the stable API error key for that entry. If every non-empty entry fails, the first
+ * failure is returned as a problem response. An empty array is accepted and returns `[]`.
  *
  */
-export const patchPartnerProductsMutation = (options?: Partial<Options<PatchPartnerProductsData>>): UseMutationOptions<PatchPartnerProductsResponse, PatchPartnerProductsError, Options<PatchPartnerProductsData>> => {
-    const mutationOptions: UseMutationOptions<PatchPartnerProductsResponse, PatchPartnerProductsError, Options<PatchPartnerProductsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await patchPartnerProducts({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const deletePartnerProductListingsMutation = (options?: Partial<Options<DeletePartnerProductListingsData>>): UseMutationOptions<DeletePartnerProductListingsResponse, DeletePartnerProductListingsError, Options<DeletePartnerProductListingsData>> => {
+  const mutationOptions: UseMutationOptions<DeletePartnerProductListingsResponse, DeletePartnerProductListingsError, Options<DeletePartnerProductListingsData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deletePartnerProductListings({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
- * Batch create products (Partner API)
+ * Batch update product-listings (Partner API)
  *
- * Creates one or more products for a shop using bearer authentication.
- * This endpoint is intended for partner shops and accepts:
- * - a Cognito bearer token for the partner user linked to the shop, or
+ * Updates one or more existing product-listings for a listing source using bearer authentication.
+ * This endpoint is intended for partnerships and accepts:
+ * - a Cognito bearer token for the partner user linked to the listing source, or
  * - an Aura Historia access token owned by that partner user.
  *
- * Aura Historia access tokens on this endpoint must include the `products:write` scope.
+ * Aura Historia access tokens on this endpoint must include the `product-listings:write` scope.
+ * Allowed callers are Aura Historia admins and users partnered with the target listing source.
  *
- * The request body is an array of `PostProductData` objects. Each entry is forwarded
- * individually to the asynchronous partner-product ingestion queue.
+ * The request body is an array of `UpdateProductListingData` objects. Omitted fields are unchanged;
+ * `null` clears availability, price, and auction fields. `null` for `url` or `images` returns
+ * `400 BAD_BODY_VALUE`; send `[]` to remove all images. The complete batch contract is
+ * validated before any entry is applied synchronously in its own PostgreSQL transaction.
  *
- * The response returns HTTP 202 with an array containing only the `shopsProductId` values
- * that failed to be forwarded to the queue. An empty array indicates that all products were
- * accepted for asynchronous processing.
+ * The response returns HTTP 200 with failures as `{ listingSourceId, sourceListingId, error }` objects when
+ * one or more entries succeed. `error` is the stable API error key for that entry. If every non-empty entry fails, the first failure is returned
+ * as a problem response. An empty array is accepted and returns `[]`.
  *
  */
-export const postPartnerProductsMutation = (options?: Partial<Options<PostPartnerProductsData>>): UseMutationOptions<PostPartnerProductsResponse, PostPartnerProductsError, Options<PostPartnerProductsData>> => {
-    const mutationOptions: UseMutationOptions<PostPartnerProductsResponse, PostPartnerProductsError, Options<PostPartnerProductsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postPartnerProducts({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const patchPartnerProductListingsMutation = (options?: Partial<Options<PatchPartnerProductListingsData>>): UseMutationOptions<PatchPartnerProductListingsResponse, PatchPartnerProductListingsError, Options<PatchPartnerProductListingsData>> => {
+  const mutationOptions: UseMutationOptions<PatchPartnerProductListingsResponse, PatchPartnerProductListingsError, Options<PatchPartnerProductListingsData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await patchPartnerProductListings({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
- * Batch upsert products (Partner API)
+ * Batch create product-listings (Partner API)
  *
- * Creates new products or updates existing ones for a shop in a single batch call,
- * using bearer authentication. This endpoint is intended for partner shops and accepts:
- * - a Cognito bearer token for the partner user linked to the shop, or
+ * Creates one or more product-listings for a listing source using bearer authentication.
+ * This endpoint is intended for partnerships and accepts:
+ * - a Cognito bearer token for the partner user linked to the listing source, or
  * - an Aura Historia access token owned by that partner user.
  *
- * Aura Historia access tokens on this endpoint must include the `products:write` scope.
+ * Aura Historia access tokens on this endpoint must include the `product-listings:write` scope.
+ * Allowed callers are Aura Historia admins and users partnered with the target listing source.
  *
- * The request body is an array of `PutProductData` objects. Each entry is forwarded
- * individually to the asynchronous partner-product ingestion queue as an upsert command.
- * When the queued command is later ingested:
- * - **New product** — a full product is created using all provided fields. Omitting
- * `title`, `url`, or `state` causes the backend to fall back to an empty title,
- * a placeholder URL, and `LISTED` respectively.
- * - **Existing product** — the backend applies `price`, `priceEstimateMin`,
- * `priceEstimateMax`, `state`, `url`, `images`, `auctionStart`, and `auctionEnd`.
- * `title`, `description`, `sellerName`, `structuredAddress`, and `geoAddress`
- * are ignored on the update path.
- * - On the update path, omitting or sending `null` for `price`, `priceEstimateMin`,
- * `priceEstimateMax`, `url`, `auctionStart`, or `auctionEnd` leaves the stored value
- * unchanged.
- * - On the update path, `images` always replaces the stored image set; omitting
- * `images` or sending `null` is treated as an empty list and therefore clears all
- * stored images.
+ * The request body is an array of `CreateProductListingData` objects. Each entry is created
+ * synchronously in its own PostgreSQL transaction.
  *
- * The response returns HTTP 202 with an array containing only the `shopsProductId` values
- * that failed to be forwarded to the queue. An empty array indicates that all upserts were
- * accepted for asynchronous processing.
+ * The response returns HTTP 200 with failures as `{ listingSourceId, sourceListingId, error }` objects when
+ * one or more entries succeed. `error` is the stable API error key for that entry. If every non-empty entry fails, the first failure is returned
+ * as a problem response. An empty array is accepted and returns `[]`.
  *
  */
-export const putPartnerProductsMutation = (options?: Partial<Options<PutPartnerProductsData>>): UseMutationOptions<PutPartnerProductsResponse, PutPartnerProductsError, Options<PutPartnerProductsData>> => {
-    const mutationOptions: UseMutationOptions<PutPartnerProductsResponse, PutPartnerProductsError, Options<PutPartnerProductsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await putPartnerProducts({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const postPartnerProductListingsMutation = (options?: Partial<Options<PostPartnerProductListingsData>>): UseMutationOptions<PostPartnerProductListingsResponse, PostPartnerProductListingsError, Options<PostPartnerProductListingsData>> => {
+  const mutationOptions: UseMutationOptions<PostPartnerProductListingsResponse, PostPartnerProductListingsError, Options<PostPartnerProductListingsData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await postPartnerProductListings({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Batch upsert product-listings (Partner API)
+ *
+ * Creates new product-listings or updates existing ones for a listing source in a single batch call,
+ * using bearer authentication. This endpoint is intended for partnerships and accepts:
+ * - a Cognito bearer token for the partner user linked to the listing source, or
+ * - an Aura Historia access token owned by that partner user.
+ *
+ * Aura Historia access tokens on this endpoint must include the `product-listings:write` scope.
+ * Allowed callers are Aura Historia admins and users partnered with the target listing source.
+ *
+ * The request body is an array of `UpsertProductListingData` objects. Each entry is upserted
+ * synchronously in its own PostgreSQL transaction. For each entry:
+ * - **New listing** — omitted or `null` availability, price, estimates, and auction timestamps
+ *   create no value; a concrete value sets it.
+ * - **Existing listing** — availability, price, each price estimate, and each auction timestamp
+ *   are tri-state: omitted preserves, `null` clears, and a concrete value sets. A withdrawn
+ *   listing is restored before current facts apply.
+ * - `title` and `description` apply only on creation. For an
+ *   existing listing they preserve current state and emit no current-state history event.
+ * - `images` is separate: omit to preserve, send `[]` to clear, or send an array to replace.
+ *   `null` is invalid. `url` is non-clearable: omit or send `null` to preserve it; send a URL
+ *   value to replace it.
+ *
+ * The response returns HTTP 200 with failures as `{ listingSourceId, sourceListingId, error }` objects when
+ * one or more entries succeed. `error` is the stable API error key for that entry. If every non-empty entry fails, the first failure is returned
+ * as a problem response. An empty array is accepted and returns `[]`.
+ *
+ */
+export const putPartnerProductListingsMutation = (options?: Partial<Options<PutPartnerProductListingsData>>): UseMutationOptions<PutPartnerProductListingsResponse, PutPartnerProductListingsError, Options<PutPartnerProductListingsData>> => {
+  const mutationOptions: UseMutationOptions<PutPartnerProductListingsResponse, PutPartnerProductListingsError, Options<PutPartnerProductListingsData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await putPartnerProductListings({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
  * Ingest a WooCommerce product webhook (Partner API)
  *
- * Accepts a single WooCommerce product webhook event for a partner shop using bearer authentication.
- * This endpoint is intended for partner shops and accepts:
- * - a Cognito bearer token for the partner user linked to the shop, or
+ * Accepts a single WooCommerce product webhook event for a partnership using bearer authentication.
+ * This endpoint is intended for partnerships and accepts:
+ * - a Cognito bearer token for the partner user linked to the listing source, or
  * - an Aura Historia access token owned by that partner user.
  *
  * The caller must provide:
  * - the bearer token in the `Authorization` header,
  * - the WooCommerce topic in `x-wc-webhook-topic`, and
- * - the base64-encoded HMAC-SHA256 signature of the raw request body in `x-wc-webhook-signature`.
+ * - the base64-encoded HMAC-SHA256 signature of the raw request body in `x-wc-webhook-signature`, and
+ * - optionally, the WooCommerce delivery identifier in `x-wc-webhook-delivery-id`.
+ *
+ * A supplied delivery identifier applies only when an event maps to raw capture. Its provider receipt retains only a
+ * canonical semantic source-payload SHA-256 evidence digest for 90 days. A captured-observation retry with the same
+ * digest receives `204`; reuse with different evidence returns `409 WOOCOMMERCE_PROVIDER_RECEIPT_DIGEST_CONFLICT`.
+ * Logical receipt expiry permits a new receipt but never removes or rewrites a captured raw revision or its provenance.
+ * A timestamp-free DELETE establishes a restore barrier. A later UPSERT without a provably newer `date_modified_gmt`
+ * returns `409 WOOCOMMERCE_PROVIDER_SOURCE_ORDER_AMBIGUOUS`; it creates neither a receipt nor a raw revision, so the
+ * original request remains recoverable for reconciliation and retry.
+ * Authorized ignored create/update events persist no receipt, even when they include a delivery identifier.
  *
  * Topic-specific payload requirements:
- * - `product.created` and `product.updated` require `id`, `name`, and `permalink`
- * - `product.deleted` requires only `id`
+ * - every topic requires `id`
+ * - `product.created` and `product.updated` with `status: publish` capture an UPSERT and require nonblank
+ * `name` and `permalink`
+ * - `product.created` and `product.updated` with `status: trash`, `draft`, `pending`, or `private` capture a
+ * DELETE and require only `id`; missing or unsupported statuses are authorized ignored events and also require
+ * only `id`
+ * - `product.deleted` captures a DELETE and requires only `id`
  *
- * The shop identified by `shopId` must have a stored `woocommerceWebhookSecret`
+ * The listing source identified by `listingSourceId` must have a stored `woocommerceWebhookSecret`
  * and a configured `woocommerceLanguage`.
- * If a non-empty `price` is sent, the shop must also have `woocommerceCurrency` configured.
+ * A nonblank `price` maps to a `SET` and requires the listing source to have `woocommerceCurrency` configured.
  *
  */
-export const postWoocommerceWebhookMutation = (options?: Partial<Options<PostWoocommerceWebhookData>>): UseMutationOptions<unknown, PostWoocommerceWebhookError, Options<PostWoocommerceWebhookData>> => {
-    const mutationOptions: UseMutationOptions<unknown, PostWoocommerceWebhookError, Options<PostWoocommerceWebhookData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postWoocommerceWebhook({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-/**
- * Delete product (Partner API)
- *
- * Soft-deletes a product for a shop. The endpoint writes a product lifecycle delete event
- * and marks the materialized DynamoDB product record as `DELETED` before returning `200`.
- *
- * Allowed callers are Aura Historia admins and users partnered with the target shop.
- * Aura Historia access tokens must include the `products:write` scope.
- *
- */
-export const deletePartnerProductMutation = (options?: Partial<Options<DeletePartnerProductData>>): UseMutationOptions<DeletePartnerProductResponse, DeletePartnerProductError, Options<DeletePartnerProductData>> => {
-    const mutationOptions: UseMutationOptions<DeletePartnerProductResponse, DeletePartnerProductError, Options<DeletePartnerProductData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deletePartnerProduct({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const postWoocommerceWebhookMutation = (options?: Partial<Options<PostWoocommerceWebhookData>>): UseMutationOptions<PostWoocommerceWebhookResponse, PostWoocommerceWebhookError, Options<PostWoocommerceWebhookData>> => {
+  const mutationOptions: UseMutationOptions<PostWoocommerceWebhookResponse, PostWoocommerceWebhookError, Options<PostWoocommerceWebhookData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await postWoocommerceWebhook({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 export type QueryKey<TOptions extends Options> = [
-    Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
-        _id: string;
-        _infinite?: boolean;
-        tags?: ReadonlyArray<string>;
-    }
+  Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
+    _id: string;
+    _infinite?: boolean;
+    tags?: ReadonlyArray<string>;
+  }
 ];
 
 const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions, infinite?: boolean, tags?: ReadonlyArray<string>): [
-    QueryKey<TOptions>[0]
+  QueryKey<TOptions>[0]
 ] => {
-    const params: QueryKey<TOptions>[0] = { _id: id, baseUrl: options?.baseUrl || (options?.client ?? client).getConfig().baseUrl } as QueryKey<TOptions>[0];
-    if (infinite) {
-        params._infinite = infinite;
-    }
-    if (tags) {
-        params.tags = tags;
-    }
-    if (options?.body) {
-        params.body = options.body;
-    }
-    if (options?.headers) {
-        params.headers = options.headers;
-    }
-    if (options?.path) {
-        params.path = options.path;
-    }
-    if (options?.query) {
-        params.query = options.query;
-    }
-    return [params];
+  const params: QueryKey<TOptions>[0] = { _id: id, baseUrl: options?.baseUrl || (options?.client ?? client).getConfig().baseUrl } as QueryKey<TOptions>[0];
+  if (infinite) {
+    params._infinite = infinite;
+  }
+  if (tags) {
+    params.tags = tags;
+  }
+  if (options?.body) {
+    params.body = options.body;
+  }
+  if (options?.headers) {
+    params.headers = options.headers;
+  }
+  if (options?.path) {
+    params.path = options.path;
+  }
+  if (options?.query) {
+    params.query = options.query;
+  }
+  return [params];
 };
 
-export const getProductQueryKey = (options: Options<GetProductData2>) => createQueryKey('getProduct', options);
+export const getProductListingByTitleSlugQueryKey = (options: Options<GetProductListingByTitleSlugData>) => createQueryKey('getProductListingByTitleSlug', options);
+
+/**
+ * Get a single product by title slug
+ *
+ * Retrieves an active ProductListing by its immutable Aura-owned `productListingTitleSlugId`, derived from its title. Withdrawn listings return `404 PRODUCT_LISTING_NOT_FOUND`; this endpoint never returns `410`.
+ */
+export const getProductListingByTitleSlugOptions = (options: Options<GetProductListingByTitleSlugData>) => queryOptions<GetProductListingByTitleSlugResponse, GetProductListingByTitleSlugError, GetProductListingByTitleSlugResponse, ReturnType<typeof getProductListingByTitleSlugQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getProductListingByTitleSlug({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getProductListingByTitleSlugQueryKey(options)
+});
+
+export const getProductListingQueryKey = (options: Options<GetProductListingData>) => createQueryKey('getProductListing', options);
 
 /**
  * Get a single product
  *
- * Retrieves a single product by its shop ID and shop's product ID.
- * Returns localized content based on the optional `language` query parameter and currency preferences.
+ * Retrieves a single product by its `productListingId`. Withdrawn listings return `404 PRODUCT_LISTING_NOT_FOUND`; this endpoint never returns `410`.
  *
- * **Personalization**: When authenticated (via optional Authorization header), the response includes
- * user-specific state such as whether the product is on the user's watchlist and notification preferences.
- * Anonymous requests receive product data without user state.
+ * `pricing.source` preserves seller-supplied source amounts and currencies. `pricing.display` contains
+ * HalfUp-converted amounts in the requested currency, and `pricing.valuation` identifies the persisted
+ * snapshot used. A sold Product may have no main price; then display prices are omitted while its immutable
+ * `SALE` valuation remains present. Currency defaults to `EUR`.
+ *
+ * Anonymous responses use freshness caching only: no `ETag` or `Last-Modified` validator is emitted because
+ * current display pricing may change when the selected persisted FX snapshot changes.
+ *
+ * Responses always contain `item`, the product data. A valid user or delegated-user bearer token
+ * adds optional top-level `userState`; authenticated responses are not cached.
  *
  */
-export const getProductOptions = (options: Options<GetProductData2>) => queryOptions<GetProductResponse, GetProductError, GetProductResponse, ReturnType<typeof getProductQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getProduct({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getProductQueryKey(options)
+export const getProductListingOptions = (options: Options<GetProductListingData>) => queryOptions<GetProductListingResponse, GetProductListingError, GetProductListingResponse, ReturnType<typeof getProductListingQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getProductListing({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getProductListingQueryKey(options)
 });
 
-export const getProductBySlugQueryKey = (options: Options<GetProductBySlugData>) => createQueryKey('getProductBySlug', options);
+export const getProductListingHistoryQueryKey = (options: Options<GetProductListingHistoryData>) => createQueryKey('getProductListingHistory', options);
 
 /**
- * Get a single product by slug
+ * Get ProductListing history
  *
- * Retrieves a single product by its shop slug ID and product slug ID.
- * Returns localized content based on the optional `language` query parameter and currency preferences.
- *
- * **Human-Readable Identifiers**: This endpoint uses slug-based identifiers which are human-readable
- * kebab-case strings. Shop slugs are derived from the shop name (e.g., "tech-store-premium"),
- * while product slugs combine the product title with a unique 6-character hexadecimal suffix
- * (e.g., "amazing-product-fa87c4").
- *
- * **Personalization**: When authenticated (via optional Authorization header), the response includes
- * user-specific state such as whether the product is on the user's watchlist and notification preferences.
- * Anonymous requests receive product data without user state.
+ * Retrieves immutable domain history for one ProductListing by `productListingId`.
+ * Each array item is one committed `PRODUCT_LISTING_DISCOVERED` or `PRODUCT_LISTING_CHANGED` event, ordered by occurrence time and event ID. A changed item contains a deterministic ordered `changes` array; it is never split into synthetic entries. Discovery exposes image count, never source image URLs.
+ * Price snapshots preserve stored source amounts and currencies. Sale observations retain their immutable source provenance. This endpoint performs no currency conversion.
  *
  */
-export const getProductBySlugOptions = (options: Options<GetProductBySlugData>) => queryOptions<GetProductBySlugResponse, GetProductBySlugError, GetProductBySlugResponse, ReturnType<typeof getProductBySlugQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getProductBySlug({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getProductBySlugQueryKey(options)
+export const getProductListingHistoryOptions = (options: Options<GetProductListingHistoryData>) => queryOptions<GetProductListingHistoryResponse, GetProductListingHistoryError, GetProductListingHistoryResponse, ReturnType<typeof getProductListingHistoryQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getProductListingHistory({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getProductListingHistoryQueryKey(options)
 });
 
-export const getProductHistoryQueryKey = (options: Options<GetProductHistoryData>) => createQueryKey('getProductHistory', options);
+export const getSimilarProductListingsQueryKey = (options: Options<GetSimilarProductListingsData>) => createQueryKey('getSimilarProductListings', options);
 
 /**
- * Get product event history
+ * Get similar product-listings
  *
- * Retrieves the event history for a specific product by its shop ID and shop's product ID.
- * Returns an array of events representing state changes, price changes, and other significant
- * product lifecycle events, ordered chronologically.
+ * Retrieves product-listings similar to the specified product using KNN search over text embeddings.
+ * When the product embedding is ready, the endpoint returns matching product-listings. If it is absent,
+ * the endpoint returns `202 Accepted` with a polling location.
  *
- * Returns localized content based on the optional `language` query parameter and currency preferences for
- * price information in the event payloads.
- *
- */
-export const getProductHistoryOptions = (options: Options<GetProductHistoryData>) => queryOptions<GetProductHistoryResponse, GetProductHistoryError, GetProductHistoryResponse, ReturnType<typeof getProductHistoryQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getProductHistory({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getProductHistoryQueryKey(options)
-});
-
-export const getSimilarProductsQueryKey = (options: Options<GetSimilarProductsData>) => createQueryKey('getSimilarProducts', options);
-
-/**
- * Get similar products
- *
- * Retrieves products similar to the specified product using semantic search based on text embeddings.
- * Returns localized content based on the optional `language` query parameter and currency preferences.
- *
- * **Personalization**: When authenticated (via optional Authorization header), the response includes
- * user-specific state for each similar product (watchlist status, notifications).
- * Anonymous requests receive product data without user state.
- *
- * **Asynchronous Processing**: If the product's text embedding has not yet been computed (typically for
- * products created less than 24 hours ago), the endpoint returns 202 Accepted with a Location header
- * to poll. The embedding generation runs nightly via batch processing.
+ * Ready entries return `displayPrice` in the requested currency and `priceValuation` metadata.
+ * Active ProductListings use one persisted snapshot pinned for the request; sold ProductListings use immutable
+ * sale-time values. Every ready entry contains `item`; a valid user or delegated-user bearer token adds
+ * `userState`. Personalized KNN results use `Cache-Control: no-store`.
  *
  */
-export const getSimilarProductsOptions = (options: Options<GetSimilarProductsData>) => queryOptions<GetSimilarProductsResponse, GetSimilarProductsError, GetSimilarProductsResponse, ReturnType<typeof getSimilarProductsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getSimilarProducts({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getSimilarProductsQueryKey(options)
+export const getSimilarProductListingsOptions = (options: Options<GetSimilarProductListingsData>) => queryOptions<GetSimilarProductListingsResponse, GetSimilarProductListingsError, GetSimilarProductListingsResponse, ReturnType<typeof getSimilarProductListingsQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getSimilarProductListings({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getSimilarProductListingsQueryKey(options)
 });
 
-export const simpleSearchProductsQueryKey = (options: Options<SimpleSearchProductsData>) => createQueryKey('simpleSearchProducts', options);
+export const simpleSearchProductListingsQueryKey = (options?: Options<SimpleSearchProductListingsData>) => createQueryKey('simpleSearchProductListings', options);
 
 /**
  * Simple product search via query parameters
  *
- * Performs product search using query parameters instead of a JSON request body.
- * This is the cache-friendly equivalent of `POST /api/v1/products/search`.
- * It supports sorting, cursor pagination, and product personalization (when authenticated).
- *
- * Required query parameters for this simple-search mode are:
- * - `language`
- * - `currency`
- *
- * Additional optional filters from `ProductSearchData` are also supported as query parameters
- * using the same field names:
- * - `excludeProductId`
- * - `shopName`
- * - `excludeShopName`
- * - `sellerName`
- * - `excludeSellerName`
- * - `shopSlugId`
- * - `excludeShopSlugId`
- * - `sellerSlugId`
- * - `excludeSellerSlugId`
- * - `shopType`
- * - `country`
- * - `continent`
- * - `geoAddress[lat]`, `geoAddress[lon]`, `geoAddress[distance][amount]`, `geoAddress[distance][unit]`
- * - `price[min]`, `price[max]`
- * - `state`
- * - `created[min]`, `created[max]`
- * - `updated[min]`, `updated[max]`
- * - `auctionStart[min]`, `auctionStart[max]`
- * - `auctionEnd[min]`, `auctionEnd[max]`
- *
+ * Performs canonical ProductListing search with query parameters. Text queries combine BM25 and embedding KNN retrieval when embedding generation succeeds; otherwise the backend falls back to BM25. Explicit non-score sorts use BM25. A valid bearer token adds user state and makes the response `Cache-Control: no-store`. `language` defaults to `en` and `currency` defaults to `EUR`.
  */
-export const simpleSearchProductsOptions = (options: Options<SimpleSearchProductsData>) => queryOptions<SimpleSearchProductsResponse, SimpleSearchProductsError, SimpleSearchProductsResponse, ReturnType<typeof simpleSearchProductsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await simpleSearchProducts({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: simpleSearchProductsQueryKey(options)
+export const simpleSearchProductListingsOptions = (options?: Options<SimpleSearchProductListingsData>) => queryOptions<SimpleSearchProductListingsResponse, SimpleSearchProductListingsError, SimpleSearchProductListingsResponse, ReturnType<typeof simpleSearchProductListingsQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await simpleSearchProductListings({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: simpleSearchProductListingsQueryKey(options)
 });
-
-/**
- * Complex product search
- *
- * Performs an advanced search for products using a comprehensive search filter.
- * This endpoint accepts a ProductSearchData object in the request body,
- * allowing for complex filtering by multiple criteria simultaneously.
- * Returns a paginated collection of products matching the search criteria.
- *
- * **Personalization**: When authenticated (via optional Authorization header), the response includes
- * user-specific state for each product such as whether it's on the user's watchlist and notification preferences.
- * Anonymous requests receive product data without user state.
- *
- */
-export const complexSearchProductsMutation = (options?: Partial<Options<ComplexSearchProductsData>>): UseMutationOptions<ComplexSearchProductsResponse, ComplexSearchProductsError, Options<ComplexSearchProductsData>> => {
-    const mutationOptions: UseMutationOptions<ComplexSearchProductsResponse, ComplexSearchProductsError, Options<ComplexSearchProductsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await complexSearchProducts({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
 
 export const getUserSearchFiltersQueryKey = (options?: Options<GetUserSearchFiltersData>) => createQueryKey('getUserSearchFilters', options);
 
@@ -407,21 +359,21 @@ export const getUserSearchFiltersQueryKey = (options?: Options<GetUserSearchFilt
  * List user search filters
  *
  * Retrieves all search filters for the authenticated user.
- * Results can be optionally sorted by creation date.
- * Requires valid Cognito JWT authentication.
+ * Uses the service's fixed collection ordering.
+ * Requires a Cognito JWT or an Aura access token with `search-filters:write`.
  *
  */
 export const getUserSearchFiltersOptions = (options?: Options<GetUserSearchFiltersData>) => queryOptions<GetUserSearchFiltersResponse, GetUserSearchFiltersError, GetUserSearchFiltersResponse, ReturnType<typeof getUserSearchFiltersQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getUserSearchFilters({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getUserSearchFiltersQueryKey(options)
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getUserSearchFilters({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getUserSearchFiltersQueryKey(options)
 });
 
 /**
@@ -430,26 +382,26 @@ export const getUserSearchFiltersOptions = (options?: Options<GetUserSearchFilte
  * Creates a new search filter for the authenticated user.
  * The search filter configuration is provided in the request body.
  * Returns the created search filter with generated ID and metadata.
- * Requires valid Cognito JWT authentication.
+ * Requires a Cognito JWT or an Aura access token with `search-filters:write`.
  *
  * The number of allowed search filters and the set of usable search filter fields depend on the user's tier:
- * - `FREE`: Up to 1 search filter. Only the following filter fields are allowed: `productQuery`, `price`, `state`. All other fields are forbidden and will return `SEARCH_FILTER_RESTRICTED_FEATURE`.
+ * - `FREE`: Up to 1 search filter. Allowed fields are `productQuery`, `price`, `state`, `excludeProductId`, and `lifecycle`. Other fields are forbidden and return `SEARCH_FILTER_RESTRICTED_FEATURE`.
  * - `PRO`: Up to 5 search filters. All filter fields are allowed.
  * - `ULTIMATE`: Unlimited search filters. All filter fields are allowed.
  *
  */
 export const createUserSearchFilterMutation = (options?: Partial<Options<CreateUserSearchFilterData>>): UseMutationOptions<CreateUserSearchFilterResponse, CreateUserSearchFilterError, Options<CreateUserSearchFilterData>> => {
-    const mutationOptions: UseMutationOptions<CreateUserSearchFilterResponse, CreateUserSearchFilterError, Options<CreateUserSearchFilterData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await createUserSearchFilter({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<CreateUserSearchFilterResponse, CreateUserSearchFilterError, Options<CreateUserSearchFilterData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await createUserSearchFilter({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -457,21 +409,21 @@ export const createUserSearchFilterMutation = (options?: Partial<Options<CreateU
  *
  * Deletes a specific search filter by its ID for the authenticated user.
  * The search filter must exist and belong to the authenticated user.
- * Requires valid Cognito JWT authentication.
+ * Requires a Cognito JWT or an Aura access token with `search-filters:write`.
  *
  */
 export const deleteUserSearchFilterMutation = (options?: Partial<Options<DeleteUserSearchFilterData>>): UseMutationOptions<DeleteUserSearchFilterResponse, DeleteUserSearchFilterError, Options<DeleteUserSearchFilterData>> => {
-    const mutationOptions: UseMutationOptions<DeleteUserSearchFilterResponse, DeleteUserSearchFilterError, Options<DeleteUserSearchFilterData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deleteUserSearchFilter({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<DeleteUserSearchFilterResponse, DeleteUserSearchFilterError, Options<DeleteUserSearchFilterData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteUserSearchFilter({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 export const getUserSearchFilterQueryKey = (options: Options<GetUserSearchFilterData>) => createQueryKey('getUserSearchFilter', options);
@@ -481,111 +433,70 @@ export const getUserSearchFilterQueryKey = (options: Options<GetUserSearchFilter
  *
  * Retrieves a specific search filter by its ID for the authenticated user.
  * Returns the complete search filter configuration and metadata.
- * Requires valid Cognito JWT authentication.
+ * Requires a Cognito JWT or an Aura access token with `search-filters:write`.
  *
  */
 export const getUserSearchFilterOptions = (options: Options<GetUserSearchFilterData>) => queryOptions<GetUserSearchFilterResponse, GetUserSearchFilterError, GetUserSearchFilterResponse, ReturnType<typeof getUserSearchFilterQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getUserSearchFilter({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getUserSearchFilterQueryKey(options)
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getUserSearchFilter({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getUserSearchFilterQueryKey(options)
 });
 
 /**
  * Update a search filter
  *
  * Updates a specific search filter by its ID for the authenticated user.
- * Allows partial updates - only provided fields will be modified.
- * If no fields are provided in the request body, returns the existing search filter unchanged.
- * Requires valid Cognito JWT authentication.
+ * Allows partial updates: omitted members remain unchanged, documented nullable criteria
+ * accept `null` to clear, and `null` for required scalars or collections returns `400 BAD_BODY_VALUE`.
+ * `{}` returns the existing search filter unchanged; an empty HTTP body is invalid.
+ * Requires a Cognito JWT or an Aura access token with `search-filters:write`.
  *
  * The set of usable search filter fields depends on the user's tier:
- * - `FREE`: Only the following filter fields are allowed: `productQuery`, `price`, `state`. All other fields are forbidden and will return `SEARCH_FILTER_RESTRICTED_FEATURE`.
+ * - `FREE`: Allowed fields are `productQuery`, `price`, `state`, `excludeProductId`, and `lifecycle`. Other fields are forbidden and return `SEARCH_FILTER_RESTRICTED_FEATURE`.
  * - `PRO`: All filter fields are allowed.
  * - `ULTIMATE`: All filter fields are allowed.
  *
  */
 export const updateUserSearchFilterMutation = (options?: Partial<Options<UpdateUserSearchFilterData>>): UseMutationOptions<UpdateUserSearchFilterResponse, UpdateUserSearchFilterError, Options<UpdateUserSearchFilterData>> => {
-    const mutationOptions: UseMutationOptions<UpdateUserSearchFilterResponse, UpdateUserSearchFilterError, Options<UpdateUserSearchFilterData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await updateUserSearchFilter({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<UpdateUserSearchFilterResponse, UpdateUserSearchFilterError, Options<UpdateUserSearchFilterData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await updateUserSearchFilter({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
-export const getSearchFilterPreviewProductsQueryKey = (options: Options<GetSearchFilterPreviewProductsData>) => createQueryKey('getSearchFilterPreviewProducts', options);
+export const listSearchFilterMatchesQueryKey = (options: Options<ListSearchFilterMatchesData>) => createQueryKey('listSearchFilterMatches', options);
 
 /**
- * Preview product matches for a saved search filter
+ * List persisted matches for a saved search filter
  *
- * Previews products that would match the authenticated user's saved search filter using the same
- * percolator-style query semantics used by search-filter product-match processing. The request only
- * controls response localization (`language`, `currency`).
- *
- * Client-driven pagination is not supported. The endpoint always returns a fixed preview of up to
- * 10 products and rejects `size` or `searchAfter` query parameters with `BAD_QUERY_PARAMETER_VALUE`.
- *
- * When the saved search filter contains `search.enhancedSearchDescription` and enhanced matching is available,
- * the backend re-evaluates each candidate product for this specific filter. Products rejected by enhanced
- * matching are omitted from the preview; accepted products expose the live result in
- * `userState.searchFilter`:
- * - `matched` (`true`)
- * - `hidden` (always `false` in this flow)
- * - optional `matchReason`
- *
- * In that enhanced flow, `userSearchFilterId`, `userSearchFilterName`, and `matchFeedback` are omitted
- * from `userState.searchFilter`.
- *
- * Requires valid Cognito JWT authentication.
- *
+ * Returns persisted product-listing matches associated with the authenticated user’s saved search filter. Results are read from stored match state and returned with cursor-based pagination in ascending persisted match-creation order. This endpoint does not execute a live search or preview the filter against current product listings.
+ * Requires a Cognito JWT or an Aura access token with `search-filters:write`.
  */
-export const getSearchFilterPreviewProductsOptions = (options: Options<GetSearchFilterPreviewProductsData>) => queryOptions<GetSearchFilterPreviewProductsResponse, GetSearchFilterPreviewProductsError, GetSearchFilterPreviewProductsResponse, ReturnType<typeof getSearchFilterPreviewProductsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getSearchFilterPreviewProducts({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getSearchFilterPreviewProductsQueryKey(options)
-});
-
-export const getSearchFilterMatchesQueryKey = (options: Options<GetSearchFilterMatchesData>) => createQueryKey('getSearchFilterMatches', options);
-
-/**
- * List products matched by a search filter
- *
- * Retrieves the persisted matched-product list for the given saved search filter and authenticated user.
- * Results are paginated using search-after cursor-based pagination sorted by match creation time.
- * Mirrors the behavior of `GET /api/v1/me/watchlist`.
- * Requires valid Cognito JWT authentication.
- *
- */
-export const getSearchFilterMatchesOptions = (options: Options<GetSearchFilterMatchesData>) => queryOptions<GetSearchFilterMatchesResponse, GetSearchFilterMatchesError, GetSearchFilterMatchesResponse, ReturnType<typeof getSearchFilterMatchesQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getSearchFilterMatches({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getSearchFilterMatchesQueryKey(options)
+export const listSearchFilterMatchesOptions = (options: Options<ListSearchFilterMatchesData>) => queryOptions<ListSearchFilterMatchesResponse, ListSearchFilterMatchesError, ListSearchFilterMatchesResponse, ReturnType<typeof listSearchFilterMatchesQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await listSearchFilterMatches({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: listSearchFilterMatchesQueryKey(options)
 });
 
 /**
@@ -593,8 +504,8 @@ export const getSearchFilterMatchesOptions = (options: Options<GetSearchFilterMa
  *
  * Updates the authenticated user's feedback for a specific product match created by one of
  * their saved search filters.
- * The match is addressed by the search filter ID, shop ID, and shop-specific product ID.
- * Requires valid Cognito JWT authentication.
+ * The match is addressed by the search filter ID and canonical product ID.
+ * Requires a Cognito JWT or an Aura access token with `search-filters:write`.
  *
  * The request body itself is required and must be a JSON object, but the `feedback` field is optional:
  * - `{"feedback": true}` marks the match as relevant.
@@ -603,65 +514,263 @@ export const getSearchFilterMatchesOptions = (options: Options<GetSearchFilterMa
  *
  */
 export const updateSearchFilterMatchFeedbackMutation = (options?: Partial<Options<UpdateSearchFilterMatchFeedbackData>>): UseMutationOptions<UpdateSearchFilterMatchFeedbackResponse, UpdateSearchFilterMatchFeedbackError, Options<UpdateSearchFilterMatchFeedbackData>> => {
-    const mutationOptions: UseMutationOptions<UpdateSearchFilterMatchFeedbackResponse, UpdateSearchFilterMatchFeedbackError, Options<UpdateSearchFilterMatchFeedbackData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await updateSearchFilterMatchFeedback({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<UpdateSearchFilterMatchFeedbackResponse, UpdateSearchFilterMatchFeedbackError, Options<UpdateSearchFilterMatchFeedbackData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await updateSearchFilterMatchFeedback({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
-export const getWatchlistProductsQueryKey = (options?: Options<GetWatchlistProductsData>) => createQueryKey('getWatchlistProducts', options);
+export const getWatchlistProductListingsQueryKey = (options?: Options<GetWatchlistProductListingsData>) => createQueryKey('getWatchlistProductListings', options);
 
 /**
- * List user's watchlist products
+ * List user's watchlist product-listings
  *
- * Retrieves all products in the authenticated user's watchlist.
- * Results are paginated using search-after cursor-based pagination with timestamp.
- * Requires valid Cognito JWT authentication.
+ * Retrieves all product-listings in the authenticated user's watchlist in watchlist creation order.
+ * Each result contains current product data and complete user-specific state.
+ * Accepts Cognito JWT authentication or an Aura Historia access token with `watchlist:read`.
  *
  */
-export const getWatchlistProductsOptions = (options?: Options<GetWatchlistProductsData>) => queryOptions<GetWatchlistProductsResponse, GetWatchlistProductsError, GetWatchlistProductsResponse, ReturnType<typeof getWatchlistProductsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getWatchlistProducts({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getWatchlistProductsQueryKey(options)
+export const getWatchlistProductListingsOptions = (options?: Options<GetWatchlistProductListingsData>) => queryOptions<GetWatchlistProductListingsResponse, GetWatchlistProductListingsError, GetWatchlistProductListingsResponse, ReturnType<typeof getWatchlistProductListingsQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getWatchlistProductListings({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getWatchlistProductListingsQueryKey(options)
 });
 
 /**
  * Add product to watchlist
  *
  * Adds a product to the authenticated user's watchlist.
- * The request body must contain the shop ID and shop's product ID.
- * Each user is limited to a maximum of 5 watchlist products. If the user already has 5 products
- * in their watchlist, adding another will result in a 422 Unprocessable Entity error.
- * Returns a 201 Created response with a Location header pointing to the created resource and the full personalized product data.
- * Requires valid Cognito JWT authentication.
+ * The request body requires canonical `productListingId` and may set `notifications`; notifications default to `true`.
+ * Active-entry quota depends on the user's tier: Free users may have 20, Pro users 100,
+ * and Ultimate users have no active-entry limit. Adding beyond the active quota returns
+ * a 422 Unprocessable Entity error.
+ * Returns the created `WatchlistEntryData`.
+ * Requires a Cognito JWT or an Aura access token with `watchlist:write`.
  *
  */
 export const addWatchlistProductMutation = (options?: Partial<Options<AddWatchlistProductData>>): UseMutationOptions<AddWatchlistProductResponse, AddWatchlistProductError, Options<AddWatchlistProductData>> => {
-    const mutationOptions: UseMutationOptions<AddWatchlistProductResponse, AddWatchlistProductError, Options<AddWatchlistProductData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await addWatchlistProduct({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<AddWatchlistProductResponse, AddWatchlistProductError, Options<AddWatchlistProductData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await addWatchlistProduct({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+export const adminSearchListingSourcesQueryKey = (options?: Options<AdminSearchListingSourcesData>) => createQueryKey('adminSearchListingSources', options);
+
+/**
+ * Search ListingSources as admin
+ *
+ * Searches ListingSource records for authenticated administrators.
+ *
+ * `query` performs a case-insensitive substring search across the ListingSource name and
+ * stable slug, and also the operator Party name and slug. `name` restricts the substring
+ * match to the ListingSource name. `listingSourceId` and `listingSourceSlugId` are exact
+ * identity filters. `operatorPartyId` and `ingestionMethod` are exact filters.
+ *
+ * Results use deterministic cursor pagination. The default sort is `name` ascending;
+ * override it by providing both `sort` and `order`. Valid sort fields are `name`, `slug`,
+ * `created`, and `updated`; ListingSource ID is always the final deterministic tie-breaker.
+ * Page sizes are clamped to 1–100, with a default of 21. The returned ListingSource ID `searchAfter`
+ * cursor is omitted on the terminal page and should be sent with the same filters and sort.
+ * Responses always use `Cache-Control: no-store`.
+ *
+ * The result contains only safe business-resource fields: ListingSource identity and name,
+ * operator Party reference, active ingestion methods, presentation URLs, and referral summary.
+ * Provider credentials, webhook secrets, and crawler-local configuration are never returned.
+ *
+ */
+export const adminSearchListingSourcesOptions = (options?: Options<AdminSearchListingSourcesData>) => queryOptions<AdminSearchListingSourcesResponse, AdminSearchListingSourcesError, AdminSearchListingSourcesResponse, ReturnType<typeof adminSearchListingSourcesQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminSearchListingSources({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminSearchListingSourcesQueryKey(options)
+});
+
+/**
+ * Create a ListingSource as admin
+ *
+ * Creates a ListingSource for an authenticated administrator.
+ *
+ * `operator` accepts either an existing Party reference (`EXISTING` with `partyId`) or a
+ * new Party with name and optional contact details (`NEW`). Ingestion configuration,
+ * provider uniqueness, presentation, and referral validation remain service-owned.
+ * `woocommerceWebhookSecret` is accepted only when WooCommerce ingestion is configured and
+ * is never returned or logged.
+ *
+ */
+export const adminCreateListingSourceMutation = (options?: Partial<Options<AdminCreateListingSourceData>>): UseMutationOptions<AdminCreateListingSourceResponse, AdminCreateListingSourceError, Options<AdminCreateListingSourceData>> => {
+  const mutationOptions: UseMutationOptions<AdminCreateListingSourceResponse, AdminCreateListingSourceError, Options<AdminCreateListingSourceData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminCreateListingSource({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+export const adminSearchPartiesQueryKey = (options?: Options<AdminSearchPartiesData>) => createQueryKey('adminSearchParties', options);
+
+/**
+ * Search parties as admin
+ *
+ * Searches Party records for authenticated administrators.
+ *
+ * `query` performs a case-insensitive substring search across Party name, phone, and email.
+ * `name`, `phone`, and `email` restrict the substring match to one contact/name field.
+ * `created` and `updated` accept inclusive RFC3339 ranges using `min` and `max` query members.
+ *
+ * Results use deterministic cursor pagination. The default sort is `name` ascending;
+ * override it by providing both `sort` and `order`. Valid sort fields are `name`, `email`,
+ * `phone`, `created`, and `updated`; Party ID is always the final deterministic tie-breaker.
+ * Page sizes are clamped to 1–100, with a default of 21. The returned ListingSource ID `searchAfter`
+ * cursor is omitted on the terminal page and should be sent with the same filters and sort.
+ * Responses always use `Cache-Control: no-store` because contact data is returned.
+ *
+ */
+export const adminSearchPartiesOptions = (options?: Options<AdminSearchPartiesData>) => queryOptions<AdminSearchPartiesResponse, AdminSearchPartiesError, AdminSearchPartiesResponse, ReturnType<typeof adminSearchPartiesQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminSearchParties({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminSearchPartiesQueryKey(options)
+});
+
+/**
+ * Create a Party as admin
+ *
+ * Creates a Party for an authenticated administrator.
+ *
+ * The request accepts only the Party name and optional phone/email contact information.
+ * Party names trim outer Unicode whitespace, reject blank values, and reject values over 255
+ * UTF-8 bytes. The Party slug is generated once from the canonical name and stable Party ID;
+ * it remains immutable if the Party is renamed later.
+ *
+ */
+export const adminCreatePartyMutation = (options?: Partial<Options<AdminCreatePartyData>>): UseMutationOptions<AdminCreatePartyResponse, AdminCreatePartyError, Options<AdminCreatePartyData>> => {
+  const mutationOptions: UseMutationOptions<AdminCreatePartyResponse, AdminCreatePartyError, Options<AdminCreatePartyData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminCreateParty({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Hard-delete an unused Party as admin
+ *
+ * Deletes only an unused Party after commit. A Party with any ListingSource or retained
+ * Partnership, including `DISSOLVED`, returns `409 CONFLICT`; no dependent business or
+ * historical row is cascaded, detached, rewritten, or archived. Responses use
+ * `Cache-Control: no-store` and this operation accepts no request body.
+ *
+ */
+export const adminDeletePartyMutation = (options?: Partial<Options<AdminDeletePartyData>>): UseMutationOptions<AdminDeletePartyResponse, AdminDeletePartyError, Options<AdminDeletePartyData>> => {
+  const mutationOptions: UseMutationOptions<AdminDeletePartyResponse, AdminDeletePartyError, Options<AdminDeletePartyData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminDeleteParty({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+export const adminGetPartyQueryKey = (options: Options<AdminGetPartyData>) => createQueryKey('adminGetParty', options);
+
+/**
+ * Get a Party as admin
+ *
+ * Gets one Party for an authenticated administrator.
+ *
+ * `partyId` must be a valid Party ID. The response contains the Party identity, immutable slug,
+ * name, optional phone/email contact information, and creation/update timestamps.
+ * Responses always use `Cache-Control: no-store` because contact data is returned.
+ *
+ */
+export const adminGetPartyOptions = (options: Options<AdminGetPartyData>) => queryOptions<AdminGetPartyResponse, AdminGetPartyError, AdminGetPartyResponse, ReturnType<typeof adminGetPartyQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminGetParty({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminGetPartyQueryKey(options)
+});
+
+/**
+ * Update a Party as admin
+ *
+ * Updates the name and/or contact information for a Party for an authenticated administrator.
+ *
+ * Only `name`, `phone`, and `email` are supported. Omitted members remain unchanged;
+ * `null` clears `phone` or `email`; `name` is not nullable and `name: null` is rejected.
+ * Party names trim outer Unicode whitespace, reject blank values, and reject values over 255
+ * UTF-8 bytes. Renaming a Party never changes its immutable slug.
+ *
+ * The response is the resulting Party representation and uses `Cache-Control: no-store`
+ * because contact data is returned. An empty object is a valid no-op PATCH; an empty HTTP
+ * body is invalid.
+ *
+ */
+export const adminUpdatePartyMutation = (options?: Partial<Options<AdminUpdatePartyData>>): UseMutationOptions<AdminUpdatePartyResponse, AdminUpdatePartyError, Options<AdminUpdatePartyData>> => {
+  const mutationOptions: UseMutationOptions<AdminUpdatePartyResponse, AdminUpdatePartyError, Options<AdminUpdatePartyData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminUpdateParty({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 export const adminSearchUsersQueryKey = (options?: Options<AdminSearchUsersData>) => createQueryKey('adminSearchUsers', options);
@@ -670,48 +779,49 @@ export const adminSearchUsersQueryKey = (options?: Options<AdminSearchUsersData>
  * Search users as admin
  *
  * Searches users across all accounts for authenticated administrators.
- * Omitting all filters lists users using the default `email` ascending order.
- * Supplying any of `query`, `email`, `firstName`, or `lastName`
- * switches the default ordering to relevance (`score`) descending unless
- * both `sort` and `order` are explicitly provided.
- *
- * The generic `query` performs fuzzy matching across `email`, `firstName`,
- * `lastName`, and `stripeCustomerId`.
- * Structured-address filters are also available via `country`, `continent`, and `geoAddress`.
+ * Text filters use case-insensitive substring matching. `query` searches email,
+ * first name, and last name; `email`, `firstName`, and `lastName` restrict the
+ * match to one field. `tier` and `role` filters use exact values.
+ * Results use deterministic keyset pagination. The default sort is `name` ascending;
+ * override it by providing both `sort` and `order`. Every sort uses `userId` as a
+ * deterministic tie-breaker. This response always uses `Cache-Control: no-store`.
  *
  */
 export const adminSearchUsersOptions = (options?: Options<AdminSearchUsersData>) => queryOptions<AdminSearchUsersResponse, AdminSearchUsersError, AdminSearchUsersResponse, ReturnType<typeof adminSearchUsersQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await adminSearchUsers({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: adminSearchUsersQueryKey(options)
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminSearchUsers({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminSearchUsersQueryKey(options)
 });
 
 /**
  * Delete a user as admin
  *
  * Deletes a user account for authenticated administrators.
- * The backend first removes the user from Cognito and then deletes the persisted user record.
+ * Cognito JWTs and Aura Historia access tokens are accepted; delegated access tokens require `users:write`.
+ * The caller's persisted user role must be `ADMIN`; this authorization is enforced in the User service.
+ * PostgreSQL synchronously cascades user-owned access tokens, OAuth authorization codes, watchlist entries, saved-search filters and matches, notifications, partnership memberships, and partnership applications.
+ * The final active administrator cannot be deleted, including through a self-targeted admin request.
  *
  */
 export const adminDeleteUserMutation = (options?: Partial<Options<AdminDeleteUserData>>): UseMutationOptions<AdminDeleteUserResponse, AdminDeleteUserError, Options<AdminDeleteUserData>> => {
-    const mutationOptions: UseMutationOptions<AdminDeleteUserResponse, AdminDeleteUserError, Options<AdminDeleteUserData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await adminDeleteUser({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<AdminDeleteUserResponse, AdminDeleteUserError, Options<AdminDeleteUserData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminDeleteUser({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 export const adminGetUserQueryKey = (options: Options<AdminGetUserData>) => createQueryKey('adminGetUser', options);
@@ -720,42 +830,231 @@ export const adminGetUserQueryKey = (options: Options<AdminGetUserData>) => crea
  * Get a user as admin
  *
  * Retrieves a single user account by user ID for authenticated administrators.
- * The response includes `Last-Modified` and `Cache-Control: no-store` headers.
+ * Cognito JWTs and Aura Historia access tokens are accepted; delegated access tokens require `users:read`.
+ * The response always sends `Cache-Control: no-store`.
  *
  */
 export const adminGetUserOptions = (options: Options<AdminGetUserData>) => queryOptions<AdminGetUserResponse, AdminGetUserError, AdminGetUserResponse, ReturnType<typeof adminGetUserQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await adminGetUser({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: adminGetUserQueryKey(options)
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminGetUser({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminGetUserQueryKey(options)
 });
 
 /**
  * Update a user as admin
  *
  * Partially updates a user account for authenticated administrators.
+ * Cognito JWTs and Aura Historia access tokens are accepted; delegated access tokens require `users:write`.
+ * The caller's persisted user role must be `ADMIN`; this authorization is enforced in the service layer.
  * All request fields are optional, but the request body itself must be present and non-empty.
+ * Send only one logical change category per request: profile/preferences fields, `role`, or `tier`.
  * An empty JSON object (`{}`) is accepted and returns the existing user unchanged.
+ * Demoting the last active administrator is rejected with `409 CONFLICT`.
  *
  */
 export const adminPatchUserMutation = (options?: Partial<Options<AdminPatchUserData>>): UseMutationOptions<AdminPatchUserResponse, AdminPatchUserError, Options<AdminPatchUserData>> => {
-    const mutationOptions: UseMutationOptions<AdminPatchUserResponse, AdminPatchUserError, Options<AdminPatchUserData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await adminPatchUser({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<AdminPatchUserResponse, AdminPatchUserError, Options<AdminPatchUserData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminPatchUser({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Reactivate a user as admin
+ *
+ * Removes the durable suspension state for the explicit target user. No request body is accepted.
+ *
+ * Cognito JWTs and Aura Historia access tokens are accepted. The caller's persisted user role
+ * must be `ADMIN`; delegated Aura Historia access tokens must also have `users:write`.
+ * Authorization is enforced in the User service, not only at the HTTP route.
+ *
+ * `userId` must be a valid User ID and the target user must exist. Reactivation is idempotent: a
+ * repeated request for an active user returns its active state without another write. The
+ * operation changes only suspension state; it preserves the user's profile, tier, role,
+ * credentials, and partnership relationships. Once committed, valid existing credentials can
+ * authenticate normally again. Every response sends `Cache-Control: no-store`.
+ *
+ */
+export const adminUnsuspendUserMutation = (options?: Partial<Options<AdminUnsuspendUserData>>): UseMutationOptions<AdminUnsuspendUserResponse, AdminUnsuspendUserError, Options<AdminUnsuspendUserData>> => {
+  const mutationOptions: UseMutationOptions<AdminUnsuspendUserResponse, AdminUnsuspendUserError, Options<AdminUnsuspendUserData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminUnsuspendUser({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Suspend a user as admin
+ *
+ * Suspends the explicit target user with an administrator-supplied reason.
+ *
+ * Cognito JWTs and Aura Historia access tokens are accepted. The caller's persisted user role
+ * must be `ADMIN`; delegated Aura Historia access tokens must also have `users:write`.
+ * Authorization is enforced in the User service, not only at the HTTP route.
+ *
+ * `userId` must be a valid User ID. `reason` is required, must not be empty or whitespace-only, and
+ * is limited to 1,000 bytes. It is emitted to structured operational logs, so it must not
+ * contain tokens, passwords, credentials, or other secrets. Common credential markers are
+ * rejected.
+ * Suspension is idempotent: a repeated request returns the target's suspended state. The final
+ * active administrator cannot be suspended. Once committed, a suspended user is rejected as
+ * `401 INVALID_CREDENTIALS` by all later Cognito JWT and Aura access-token authentication.
+ * Every response sends `Cache-Control: no-store`.
+ *
+ */
+export const adminSuspendUserMutation = (options?: Partial<Options<AdminSuspendUserData>>): UseMutationOptions<AdminSuspendUserResponse, AdminSuspendUserError, Options<AdminSuspendUserData>> => {
+  const mutationOptions: UseMutationOptions<AdminSuspendUserResponse, AdminSuspendUserError, Options<AdminSuspendUserData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminSuspendUser({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Revoke a user's Cognito sessions as admin
+ *
+ * Invalidates the explicit target user's Cognito sessions with Cognito global sign-out. No request body is accepted.
+ *
+ * Cognito JWTs and Aura Historia access tokens are accepted. The caller's persisted user role
+ * must be `ADMIN`; delegated Aura Historia access tokens must also have `users:write`.
+ * Authorization and the target-user check are enforced in the User service, not only at the
+ * HTTP route. The PostgreSQL authorization check completes before the external Cognito call.
+ *
+ * `userId` must be a valid User ID and the target user must exist. Cognito global sign-out is safe to
+ * retry: it succeeds when there are no active sessions. The operation does not change the
+ * Aura user's profile, tier, role, suspension state, Aura access tokens, or partnerships.
+ * Every response sends `Cache-Control: no-store`.
+ *
+ */
+export const adminRevokeUserSessionsMutation = (options?: Partial<Options<AdminRevokeUserSessionsData>>): UseMutationOptions<AdminRevokeUserSessionsResponse, AdminRevokeUserSessionsError, Options<AdminRevokeUserSessionsData>> => {
+  const mutationOptions: UseMutationOptions<AdminRevokeUserSessionsResponse, AdminRevokeUserSessionsError, Options<AdminRevokeUserSessionsData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminRevokeUserSessions({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Revoke all of a user's Aura Historia access tokens as admin
+ *
+ * Revokes all Aura Historia access tokens owned by the target user in one atomic PostgreSQL transaction.
+ *
+ * Cognito JWTs and Aura Historia access tokens are accepted. The caller's persisted user role
+ * must be `ADMIN`; delegated Aura Historia access tokens must also have `access-tokens:write`.
+ * Authorization is enforced in the User service, not only at the HTTP route.
+ *
+ * `userId` must be a valid User ID and the target user must exist. An existing user with no tokens and
+ * a repeated request both return `204 No Content`; a missing target user returns `404 USER_NOT_FOUND`.
+ * Deletion is scoped to the target user, leaves unrelated users' tokens untouched, and committed
+ * deletion makes the revoked credentials fail authentication. It never reveals raw token values or hashes.
+ *
+ */
+export const adminDeleteUserAccessTokensMutation = (options?: Partial<Options<AdminDeleteUserAccessTokensData>>): UseMutationOptions<AdminDeleteUserAccessTokensResponse, AdminDeleteUserAccessTokensError, Options<AdminDeleteUserAccessTokensData>> => {
+  const mutationOptions: UseMutationOptions<AdminDeleteUserAccessTokensResponse, AdminDeleteUserAccessTokensError, Options<AdminDeleteUserAccessTokensData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminDeleteUserAccessTokens({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+export const adminListUserAccessTokensQueryKey = (options: Options<AdminListUserAccessTokensData>) => createQueryKey('adminListUserAccessTokens', options);
+
+/**
+ * List a user's Aura Historia access-token metadata as admin
+ *
+ * Lists non-secret Aura Historia access-token metadata for the explicit target user.
+ *
+ * Cognito JWTs and Aura Historia access tokens are accepted. The caller's persisted user role
+ * must be `ADMIN`; delegated Aura Historia access tokens must also have `access-tokens:read`.
+ * Authorization is enforced in the User service, not only at the HTTP route.
+ *
+ * `userId` must be a valid User ID and the target user must exist. Expired and current tokens are included.
+ * Results use bounded keyset pagination in fixed `created ASC, AccessToken ID ASC` order.
+ * Page sizes are clamped to 1–100, with a default of 21. `searchAfter` is a JSON-encoded
+ * `[created RFC3339 timestamp, AccessToken ID]` cursor and is omitted on the terminal page.
+ * The cursor's creation timestamp is used only for continuation and is not returned as item metadata.
+ * Raw token values, token hashes, and masked token values are never returned.
+ *
+ */
+export const adminListUserAccessTokensOptions = (options: Options<AdminListUserAccessTokensData>) => queryOptions<AdminListUserAccessTokensResponse, AdminListUserAccessTokensError, AdminListUserAccessTokensResponse, ReturnType<typeof adminListUserAccessTokensQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminListUserAccessTokens({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminListUserAccessTokensQueryKey(options)
+});
+
+/**
+ * Revoke a user's Aura Historia access token as admin
+ *
+ * Revokes one Aura Historia access token for the target user.
+ *
+ * Cognito JWTs and Aura Historia access tokens are accepted. The caller's persisted user role
+ * must be `ADMIN`; delegated Aura Historia access tokens must also have `access-tokens:write`.
+ * Authorization is enforced in the User service, not only at the HTTP route.
+ *
+ * Both `userId` and `accessTokenId` must be valid User and AccessToken IDs, respectively. The database deletion is scoped by both
+ * identifiers, so an access-token ID belonging to another user cannot revoke that user's
+ * credential. The operation is idempotent: it returns `204 No Content` when the token was
+ * deleted, was already absent, or belongs to another user. It never reveals raw token values
+ * or hashes.
+ *
+ */
+export const adminDeleteUserAccessTokenMutation = (options?: Partial<Options<AdminDeleteUserAccessTokenData>>): UseMutationOptions<AdminDeleteUserAccessTokenResponse, AdminDeleteUserAccessTokenError, Options<AdminDeleteUserAccessTokenData>> => {
+  const mutationOptions: UseMutationOptions<AdminDeleteUserAccessTokenResponse, AdminDeleteUserAccessTokenError, Options<AdminDeleteUserAccessTokenData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminDeleteUserAccessToken({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -763,44 +1062,45 @@ export const adminPatchUserMutation = (options?: Partial<Options<AdminPatchUserD
  *
  * Permanently deletes the authenticated user's account.
  * The deletion is performed synchronously and the access token is immediately invalidated upon success.
- * Requires valid Cognito JWT authentication.
+ * Cognito JWTs and Aura Historia access tokens are accepted; delegated access tokens require `users:write`.
+ * The last active administrator cannot be deleted.
  *
  */
 export const deleteUserMutation = (options?: Partial<Options<DeleteUserData>>): UseMutationOptions<DeleteUserResponse, DeleteUserError, Options<DeleteUserData>> => {
-    const mutationOptions: UseMutationOptions<DeleteUserResponse, DeleteUserError, Options<DeleteUserData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deleteUser({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<DeleteUserResponse, DeleteUserError, Options<DeleteUserData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteUser({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
-export const getUserAccountQueryKey = (options?: Options<GetUserAccountData2>) => createQueryKey('getUserAccount', options);
+export const getUserAccountQueryKey = (options?: Options<GetUserAccountData>) => createQueryKey('getUserAccount', options);
 
 /**
  * Get user account data
  *
  * Retrieves the authenticated user's account information including email, name, language and currency preferences,
- * the consent flag for displaying prohibited content, the user's subscription tier, and the user's role.
+ * the `showUnassessedOrSensitiveContent` preference, the user's subscription tier, and the user's role.
  * Requires valid Cognito JWT authentication.
  *
  */
-export const getUserAccountOptions = (options?: Options<GetUserAccountData2>) => queryOptions<GetUserAccountResponse, GetUserAccountError, GetUserAccountResponse, ReturnType<typeof getUserAccountQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getUserAccount({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getUserAccountQueryKey(options)
+export const getUserAccountOptions = (options?: Options<GetUserAccountData>) => queryOptions<GetUserAccountResponse, GetUserAccountError, GetUserAccountResponse, ReturnType<typeof getUserAccountQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getUserAccount({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getUserAccountQueryKey(options)
 });
 
 /**
@@ -814,17 +1114,17 @@ export const getUserAccountOptions = (options?: Options<GetUserAccountData2>) =>
  *
  */
 export const updateUserAccountMutation = (options?: Partial<Options<UpdateUserAccountData>>): UseMutationOptions<UpdateUserAccountResponse, UpdateUserAccountError, Options<UpdateUserAccountData>> => {
-    const mutationOptions: UseMutationOptions<UpdateUserAccountResponse, UpdateUserAccountError, Options<UpdateUserAccountData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await updateUserAccount({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<UpdateUserAccountResponse, UpdateUserAccountError, Options<UpdateUserAccountData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await updateUserAccount({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 export const getMyAccessTokensQueryKey = (options?: Options<GetMyAccessTokensData>) => createQueryKey('getMyAccessTokens', options);
@@ -838,38 +1138,39 @@ export const getMyAccessTokensQueryKey = (options?: Options<GetMyAccessTokensDat
  *
  */
 export const getMyAccessTokensOptions = (options?: Options<GetMyAccessTokensData>) => queryOptions<GetMyAccessTokensResponse, GetMyAccessTokensError, GetMyAccessTokensResponse, ReturnType<typeof getMyAccessTokensQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getMyAccessTokens({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getMyAccessTokensQueryKey(options)
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getMyAccessTokens({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getMyAccessTokensQueryKey(options)
 });
 
 /**
  * Update an Aura Historia access token
  *
- * Updates metadata for one access token owned by the authenticated user.
- * Omitted or `null` optional properties leave the existing value unchanged.
+ * Updates metadata for one access token owned by the authenticated user. Omitted properties
+ * remain unchanged; `expires: null` clears expiry. `name` and `scopes` reject `null`; use
+ * `scopes: []` to clear scopes.
  * Requires valid Cognito JWT authentication.
  *
  */
 export const patchMyAccessTokenMutation = (options?: Partial<Options<PatchMyAccessTokenData>>): UseMutationOptions<PatchMyAccessTokenResponse, PatchMyAccessTokenError, Options<PatchMyAccessTokenData>> => {
-    const mutationOptions: UseMutationOptions<PatchMyAccessTokenResponse, PatchMyAccessTokenError, Options<PatchMyAccessTokenData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await patchMyAccessToken({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<PatchMyAccessTokenResponse, PatchMyAccessTokenError, Options<PatchMyAccessTokenData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await patchMyAccessToken({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -881,17 +1182,17 @@ export const patchMyAccessTokenMutation = (options?: Partial<Options<PatchMyAcce
  *
  */
 export const postMyAccessTokenMutation = (options?: Partial<Options<PostMyAccessTokenData>>): UseMutationOptions<PostMyAccessTokenResponse, PostMyAccessTokenError, Options<PostMyAccessTokenData>> => {
-    const mutationOptions: UseMutationOptions<PostMyAccessTokenResponse, PostMyAccessTokenError, Options<PostMyAccessTokenData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postMyAccessToken({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<PostMyAccessTokenResponse, PostMyAccessTokenError, Options<PostMyAccessTokenData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await postMyAccessToken({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -899,21 +1200,22 @@ export const postMyAccessTokenMutation = (options?: Partial<Options<PostMyAccess
  *
  * Deletes one access token owned by the authenticated user.
  * The token to delete is identified by the required `{accessTokenId}` path parameter.
- * Requires valid Cognito JWT authentication.
+ * Cognito JWTs and Aura Historia access tokens are accepted; delegated access tokens require `access-tokens:write`.
+ * The operation is idempotent: an already-revoked or missing token is a successful no-op and returns `204 No Content`.
  *
  */
 export const deleteMyAccessTokenMutation = (options?: Partial<Options<DeleteMyAccessTokenData>>): UseMutationOptions<DeleteMyAccessTokenResponse, DeleteMyAccessTokenError, Options<DeleteMyAccessTokenData>> => {
-    const mutationOptions: UseMutationOptions<DeleteMyAccessTokenResponse, DeleteMyAccessTokenError, Options<DeleteMyAccessTokenData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deleteMyAccessToken({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<DeleteMyAccessTokenResponse, DeleteMyAccessTokenError, Options<DeleteMyAccessTokenData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteMyAccessToken({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 export const getMyAccessTokenQueryKey = (options: Options<GetMyAccessTokenData>) => createQueryKey('getMyAccessToken', options);
@@ -927,16 +1229,16 @@ export const getMyAccessTokenQueryKey = (options: Options<GetMyAccessTokenData>)
  *
  */
 export const getMyAccessTokenOptions = (options: Options<GetMyAccessTokenData>) => queryOptions<GetMyAccessTokenResponse, GetMyAccessTokenError, GetMyAccessTokenResponse, ReturnType<typeof getMyAccessTokenQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getMyAccessToken({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getMyAccessTokenQueryKey(options)
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getMyAccessToken({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getMyAccessTokenQueryKey(options)
 });
 
 /**
@@ -945,23 +1247,24 @@ export const getMyAccessTokenOptions = (options: Options<GetMyAccessTokenData>) 
  * Creates a hosted Stripe Checkout session for the authenticated user to start a subscription.
  * The request body selects the desired subscription plan and billing cycle.
  * The backend first creates and persists a Stripe customer for the user, then creates a
- * subscription-mode Checkout session for that customer.
+ * subscription-mode Checkout session for that customer. Stripe and PostgreSQL are separate
+ * systems; an association remains persisted if later session creation fails.
  * This endpoint can only be used when the user does not already have a `stripe_customer_id`.
- * Requires valid Cognito JWT authentication.
+ * Requires Cognito JWT or Aura Historia access-token authentication. Delegated access tokens require `users:read`.
  *
  */
 export const postBillingCheckoutMutation = (options?: Partial<Options<PostBillingCheckoutData2>>): UseMutationOptions<PostBillingCheckoutResponse, PostBillingCheckoutError, Options<PostBillingCheckoutData2>> => {
-    const mutationOptions: UseMutationOptions<PostBillingCheckoutResponse, PostBillingCheckoutError, Options<PostBillingCheckoutData2>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postBillingCheckout({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<PostBillingCheckoutResponse, PostBillingCheckoutError, Options<PostBillingCheckoutData2>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await postBillingCheckout({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -970,21 +1273,21 @@ export const postBillingCheckoutMutation = (options?: Partial<Options<PostBillin
  * Creates a hosted Stripe customer-portal session for the authenticated user.
  * This endpoint does not accept a request body.
  * It can only be used when the user already has a persisted `stripe_customer_id`.
- * Requires valid Cognito JWT authentication.
+ * Requires Cognito JWT or Aura Historia access-token authentication. Delegated access tokens require `users:read`.
  *
  */
 export const postBillingPortalMutation = (options?: Partial<Options<PostBillingPortalData>>): UseMutationOptions<PostBillingPortalResponse, PostBillingPortalError, Options<PostBillingPortalData>> => {
-    const mutationOptions: UseMutationOptions<PostBillingPortalResponse, PostBillingPortalError, Options<PostBillingPortalData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postBillingPortal({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<PostBillingPortalResponse, PostBillingPortalError, Options<PostBillingPortalData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await postBillingPortal({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -1000,21 +1303,21 @@ export const postBillingPortalMutation = (options?: Partial<Options<PostBillingP
  * validates that the body is present and well-formed, but returns a portal session based on the
  * stored Stripe customer rather than purchasing a new plan.
  *
- * Requires valid Cognito JWT authentication.
+ * Requires Cognito JWT or Aura Historia access-token authentication. Delegated access tokens require `users:read`.
  *
  */
 export const postBillingManageMutation = (options?: Partial<Options<PostBillingManageData>>): UseMutationOptions<PostBillingManageResponse, PostBillingManageError, Options<PostBillingManageData>> => {
-    const mutationOptions: UseMutationOptions<PostBillingManageResponse, PostBillingManageError, Options<PostBillingManageData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postBillingManage({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<PostBillingManageResponse, PostBillingManageError, Options<PostBillingManageData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await postBillingManage({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -1026,17 +1329,17 @@ export const postBillingManageMutation = (options?: Partial<Options<PostBillingM
  *
  */
 export const deleteWatchlistProductMutation = (options?: Partial<Options<DeleteWatchlistProductData>>): UseMutationOptions<DeleteWatchlistProductResponse, DeleteWatchlistProductError, Options<DeleteWatchlistProductData>> => {
-    const mutationOptions: UseMutationOptions<DeleteWatchlistProductResponse, DeleteWatchlistProductError, Options<DeleteWatchlistProductData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deleteWatchlistProduct({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<DeleteWatchlistProductResponse, DeleteWatchlistProductError, Options<DeleteWatchlistProductData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteWatchlistProduct({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -1048,132 +1351,128 @@ export const deleteWatchlistProductMutation = (options?: Partial<Options<DeleteW
  *
  */
 export const patchWatchlistProductMutation = (options?: Partial<Options<PatchWatchlistProductData>>): UseMutationOptions<PatchWatchlistProductResponse, PatchWatchlistProductError, Options<PatchWatchlistProductData>> => {
-    const mutationOptions: UseMutationOptions<PatchWatchlistProductResponse, PatchWatchlistProductError, Options<PatchWatchlistProductData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await patchWatchlistProduct({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<PatchWatchlistProductResponse, PatchWatchlistProductError, Options<PatchWatchlistProductData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await patchWatchlistProduct({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
  * Delete all notifications
- *
- * Deletes all notifications for the authenticated user.
- * Returns 204 No Content on success.
- * Requires valid Cognito JWT authentication.
- *
  */
-export const deleteAllNotificationsMutation = (options?: Partial<Options<DeleteAllNotificationsData>>): UseMutationOptions<DeleteAllNotificationsResponse, DeleteAllNotificationsError, Options<DeleteAllNotificationsData>> => {
-    const mutationOptions: UseMutationOptions<DeleteAllNotificationsResponse, DeleteAllNotificationsError, Options<DeleteAllNotificationsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deleteAllNotifications({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const deleteNotificationsMutation = (options?: Partial<Options<DeleteNotificationsData>>): UseMutationOptions<DeleteNotificationsResponse, DeleteNotificationsError, Options<DeleteNotificationsData>> => {
+  const mutationOptions: UseMutationOptions<DeleteNotificationsResponse, DeleteNotificationsError, Options<DeleteNotificationsData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteNotifications({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
-export const getNotificationsQueryKey = (options?: Options<GetNotificationsData>) => createQueryKey('getNotifications', options);
+export const listNotificationsQueryKey = (options?: Options<ListNotificationsData>) => createQueryKey('listNotifications', options);
 
 /**
  * List user notifications
  *
- * Retrieves the authenticated user's notifications, sorted latest-first.
- * Results are paginated using search-after cursor-based pagination with an event ID cursor.
- * Requires valid Cognito JWT authentication.
+ * Retrieves the authenticated user’s canonical notifications in newest-first order.
+ * Watchlist price-change notifications preserve each event’s immutable source currency; no FX conversion
+ * is applied from the user’s preferences. Product image URLs are presented according to the authenticated
+ * user’s `showUnassessedOrSensitiveContent` preference.
  *
  */
-export const getNotificationsOptions = (options?: Options<GetNotificationsData>) => queryOptions<GetNotificationsResponse, GetNotificationsError, GetNotificationsResponse, ReturnType<typeof getNotificationsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getNotifications({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getNotificationsQueryKey(options)
+export const listNotificationsOptions = (options?: Options<ListNotificationsData>) => queryOptions<ListNotificationsResponse, ListNotificationsError, ListNotificationsResponse, ReturnType<typeof listNotificationsQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await listNotifications({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: listNotificationsQueryKey(options)
 });
 
 /**
- * Update all notifications
+ * Update selected notification seen states
  *
- * Updates all notifications for the authenticated user.
- * Accepts an optional `PatchNotificationData` body. If the body is omitted or empty,
- * the update command defaults to no-op field values (e.g. `seen` remains unchanged).
- * Returns the first page of the updated notifications, localized by the given `language` and `currency` query parameters.
- * Requires valid Cognito JWT authentication.
- *
+ * Updates the seen state for the explicit canonical notification IDs in the request body.
  */
-export const patchAllNotificationsMutation = (options?: Partial<Options<PatchAllNotificationsData>>): UseMutationOptions<PatchAllNotificationsResponse, PatchAllNotificationsError, Options<PatchAllNotificationsData>> => {
-    const mutationOptions: UseMutationOptions<PatchAllNotificationsResponse, PatchAllNotificationsError, Options<PatchAllNotificationsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await patchAllNotifications({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const updateNotificationsSeenMutation = (options?: Partial<Options<UpdateNotificationsSeenData2>>): UseMutationOptions<UpdateNotificationsSeenResponse, UpdateNotificationsSeenError, Options<UpdateNotificationsSeenData2>> => {
+  const mutationOptions: UseMutationOptions<UpdateNotificationsSeenResponse, UpdateNotificationsSeenError, Options<UpdateNotificationsSeenData2>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await updateNotificationsSeen({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
- * Delete a single notification
- *
- * Deletes the notification identified by `eventId` for the authenticated user.
- * Returns 204 No Content on success.
- * Returns 404 if no notification with the given event ID exists for this user.
- * Requires valid Cognito JWT authentication.
- *
+ * Update all notification seen states
+ */
+export const updateAllNotificationsSeenMutation = (options?: Partial<Options<UpdateAllNotificationsSeenData>>): UseMutationOptions<UpdateAllNotificationsSeenResponse, UpdateAllNotificationsSeenError, Options<UpdateAllNotificationsSeenData>> => {
+  const mutationOptions: UseMutationOptions<UpdateAllNotificationsSeenResponse, UpdateAllNotificationsSeenError, Options<UpdateAllNotificationsSeenData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await updateAllNotificationsSeen({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Delete one notification
  */
 export const deleteNotificationMutation = (options?: Partial<Options<DeleteNotificationData>>): UseMutationOptions<DeleteNotificationResponse, DeleteNotificationError, Options<DeleteNotificationData>> => {
-    const mutationOptions: UseMutationOptions<DeleteNotificationResponse, DeleteNotificationError, Options<DeleteNotificationData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deleteNotification({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<DeleteNotificationResponse, DeleteNotificationError, Options<DeleteNotificationData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteNotification({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
- * Update a single notification
- *
- * Updates the fields of a single notification identified by `eventId`.
- * The request body is required and must contain at least one field.
- * Returns the updated, localized notification.
- * Requires valid Cognito JWT authentication.
- *
+ * Update one notification seen state
  */
-export const patchNotificationMutation = (options?: Partial<Options<PatchNotificationData2>>): UseMutationOptions<PatchNotificationResponse, PatchNotificationError, Options<PatchNotificationData2>> => {
-    const mutationOptions: UseMutationOptions<PatchNotificationResponse, PatchNotificationError, Options<PatchNotificationData2>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await patchNotification({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const updateNotificationSeenMutation = (options?: Partial<Options<UpdateNotificationSeenData2>>): UseMutationOptions<UpdateNotificationSeenResponse, UpdateNotificationSeenError, Options<UpdateNotificationSeenData2>> => {
+  const mutationOptions: UseMutationOptions<UpdateNotificationSeenResponse, UpdateNotificationSeenError, Options<UpdateNotificationSeenData2>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await updateNotificationSeen({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -1182,622 +1481,105 @@ export const patchNotificationMutation = (options?: Partial<Options<PatchNotific
  * Subscribes an email address to the Aura Historia newsletter mailing list.
  *
  * The endpoint accepts anonymous requests.
- * An optional Cognito bearer token may be supplied for authenticated calls.
+ * An optional Cognito JWT or Aura Historia access-token bearer credential may be supplied for authenticated calls.
  * When authenticated, omitted optional profile fields (`firstName`, `lastName`, `language`, `currency`)
  * fall back to the authenticated user's stored account values; explicitly provided request values take precedence.
  *
  */
 export const putNewsletterSubscriptionMutation = (options?: Partial<Options<PutNewsletterSubscriptionData2>>): UseMutationOptions<PutNewsletterSubscriptionResponse, PutNewsletterSubscriptionError, Options<PutNewsletterSubscriptionData2>> => {
-    const mutationOptions: UseMutationOptions<PutNewsletterSubscriptionResponse, PutNewsletterSubscriptionError, Options<PutNewsletterSubscriptionData2>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await putNewsletterSubscription({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const simpleSearchShopsQueryKey = (options?: Options<SimpleSearchShopsData>) => createQueryKey('simpleSearchShops', options);
-
-/**
- * Simple shop search via query parameters
- *
- * Performs shop search using query parameters instead of a JSON request body.
- * This is the cache-friendly equivalent of `POST /api/v1/shops/search`.
- *
- * Authentication is optional on this endpoint:
- * - unauthenticated requests return cacheable shared responses
- * - authenticated Cognito JWT or Aura Historia access-token requests return `Cache-Control: no-store`
- *
- * All optional filters from `ShopSearchData` are supported as query parameters
- * using the same field names:
- * - `shopNameQuery`
- * - `shopType`
- * - `partnerStatus`
- * - `countries`
- * - `continents`
- * - `created[min]`, `created[max]`
- * - `updated[min]`, `updated[max]`
- *
- */
-export const simpleSearchShopsOptions = (options?: Options<SimpleSearchShopsData>) => queryOptions<SimpleSearchShopsResponse, SimpleSearchShopsError, SimpleSearchShopsResponse, ReturnType<typeof simpleSearchShopsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await simpleSearchShops({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: simpleSearchShopsQueryKey(options)
-});
-
-/**
- * Create a shop
- *
- * Creates a new shop record and returns the created shop.
- *
- * Requires a valid Cognito JWT and the `ADMIN` role.
- *
- * The request body uses `PostShopData`. The backend derives `shopSlugId` from `name`
- * and initializes newly created shops with `partnerStatus` set to `SCRAPED`.
- *
- */
-export const postShopMutation = (options?: Partial<Options<PostShopData2>>): UseMutationOptions<PostShopResponse, PostShopError, Options<PostShopData2>> => {
-    const mutationOptions: UseMutationOptions<PostShopResponse, PostShopError, Options<PostShopData2>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postShop({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const getShopByIdQueryKey = (options: Options<GetShopByIdData>) => createQueryKey('getShopById', options);
-
-/**
- * Get shop details by ID
- *
- * Retrieves detailed information about a specific shop by its shop ID (UUID).
- * Returns complete shop metadata including name, domains, image, address/contact metadata, and timestamps.
- *
- * Authentication is optional on this endpoint:
- * - unauthenticated requests return cacheable shared responses
- * - authenticated Cognito JWT or Aura Historia access-token requests return `Cache-Control: no-store`
- *
- */
-export const getShopByIdOptions = (options: Options<GetShopByIdData>) => queryOptions<GetShopByIdResponse, GetShopByIdError, GetShopByIdResponse, ReturnType<typeof getShopByIdQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getShopById({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getShopByIdQueryKey(options)
-});
-
-/**
- * Update shop details
- *
- * Updates mutable shop metadata for the specified shop.
- *
- * Requires either:
- * - a valid Cognito JWT for the partner user assigned to the shop or for an `ADMIN`, or
- * - a valid Aura Historia access token owned by the partner user assigned to the shop.
- *
- * The request body uses `PatchShopData`. Only fields present in the JSON body are applied;
- * omitted or `null` fields are left unchanged. The HTTP request body itself must not be absent
- * or an empty string; `{}` is valid.
- *
- */
-export const patchShopByIdMutation = (options?: Partial<Options<PatchShopByIdData>>): UseMutationOptions<PatchShopByIdResponse, PatchShopByIdError, Options<PatchShopByIdData>> => {
-    const mutationOptions: UseMutationOptions<PatchShopByIdResponse, PatchShopByIdError, Options<PatchShopByIdData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await patchShopById({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const getShopBySlugQueryKey = (options: Options<GetShopBySlugData>) => createQueryKey('getShopBySlug', options);
-
-/**
- * Get shop details by slug
- *
- * Retrieves detailed information about a specific shop by its human-readable slug identifier.
- * Returns complete shop metadata including name, domains, image, address/contact metadata, and timestamps.
- *
- * Authentication is optional on this endpoint:
- * - unauthenticated requests return cacheable shared responses
- * - authenticated Cognito JWT or Aura Historia access-token requests return `Cache-Control: no-store`
- *
- * **Human-Readable Identifiers**: This endpoint uses slug-based identifiers which are human-readable
- * kebab-case strings derived from the shop name (e.g., "tech-store-premium" or "christies").
- *
- */
-export const getShopBySlugOptions = (options: Options<GetShopBySlugData>) => queryOptions<GetShopBySlugResponse, GetShopBySlugError, GetShopBySlugResponse, ReturnType<typeof getShopBySlugQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getShopBySlug({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getShopBySlugQueryKey(options)
-});
-
-export const getShopByDomainQueryKey = (options: Options<GetShopByDomainData>) => createQueryKey('getShopByDomain', options);
-
-/**
- * Get shop details by domain
- *
- * Retrieves detailed information about a specific shop by one of its configured domains.
- * Returns complete shop metadata including name, domains, image, address/contact metadata, and timestamps.
- *
- * Authentication is optional on this endpoint:
- * - unauthenticated requests return cacheable shared responses
- * - authenticated Cognito JWT or Aura Historia access-token requests return `Cache-Control: no-store`
- *
- */
-export const getShopByDomainOptions = (options: Options<GetShopByDomainData>) => queryOptions<GetShopByDomainResponse, GetShopByDomainError, GetShopByDomainResponse, ReturnType<typeof getShopByDomainQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getShopByDomain({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getShopByDomainQueryKey(options)
-});
-
-/**
- * Search shops
- *
- * Performs an advanced search for shops using comprehensive filtering criteria.
- * This endpoint accepts a ShopSearchData object in the request body,
- * allowing for complex filtering by shop name, shop type, partner status,
- * countries, continents, and creation/update date ranges.
- * Returns a paginated collection of shops matching the search criteria.
- *
- */
-export const searchShopsMutation = (options?: Partial<Options<SearchShopsData>>): UseMutationOptions<SearchShopsResponse, SearchShopsError, Options<SearchShopsData>> => {
-    const mutationOptions: UseMutationOptions<SearchShopsResponse, SearchShopsError, Options<SearchShopsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await searchShops({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const getCategoriesQueryKey = (options?: Options<GetCategoriesData>) => createQueryKey('getCategories', options);
-
-/**
- * Get all categories or simple-search categories
- *
- * Disabled: currently not enabled in the backend. This contract remains documented for internal reference.
- *
- * Retrieves all product categories with localized names when no query parameters are supplied.
- * When query parameters are present, this endpoint performs simple category search and behaves
- * like `POST /api/v1/categories/search` using query-string input instead of a JSON body.
- *
- * For simple-search mode, use:
- * - `language` (optional, defaults to `en`)
- * - `nameQuery` (optional)
- * - `sort` and `order` (optional)
- *
- *
- * @deprecated
- */
-export const getCategoriesOptions = (options?: Options<GetCategoriesData>) => queryOptions<GetCategoriesResponse, GetCategoriesError, GetCategoriesResponse, ReturnType<typeof getCategoriesQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getCategories({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getCategoriesQueryKey(options)
-});
-
-export const getCategoryByIdQueryKey = (options: Options<GetCategoryByIdData>) => createQueryKey('getCategoryById', options);
-
-/**
- * Get category details by ID
- *
- * Disabled: currently not enabled in the backend. This contract remains documented for internal reference.
- *
- * Retrieves detailed category information by its kebab-case category ID.
- * Localization is based on the optional `language` query parameter (defaults to `en`).
- *
- *
- * @deprecated
- */
-export const getCategoryByIdOptions = (options: Options<GetCategoryByIdData>) => queryOptions<GetCategoryByIdResponse, GetCategoryByIdError, GetCategoryByIdResponse, ReturnType<typeof getCategoryByIdQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getCategoryById({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getCategoryByIdQueryKey(options)
-});
-
-/**
- * Search categories
- *
- * Disabled: currently not enabled in the backend. This contract remains documented for internal reference.
- *
- * Searches categories using a localized name query.
- * Provide an optional language and optionally a nameQuery to filter results.
- *
- *
- * @deprecated
- */
-export const searchCategoriesMutation = (options?: Partial<Options<SearchCategoriesData>>): UseMutationOptions<SearchCategoriesResponse, SearchCategoriesError, Options<SearchCategoriesData>> => {
-    const mutationOptions: UseMutationOptions<SearchCategoriesResponse, SearchCategoriesError, Options<SearchCategoriesData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await searchCategories({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const getPeriodsQueryKey = (options?: Options<GetPeriodsData>) => createQueryKey('getPeriods', options);
-
-/**
- * Get all periods or simple-search periods
- *
- * Disabled: currently not enabled in the backend. This contract remains documented for internal reference.
- *
- * Retrieves all product periods with localized names when no query parameters are supplied.
- * When query parameters are present, this endpoint performs simple period search and behaves
- * like `POST /api/v1/periods/search` using query-string input instead of a JSON body.
- *
- * For simple-search mode, use:
- * - `language` (optional, defaults to `en`)
- * - `nameQuery` (optional)
- * - `sort` and `order` (optional)
- *
- *
- * @deprecated
- */
-export const getPeriodsOptions = (options?: Options<GetPeriodsData>) => queryOptions<GetPeriodsResponse, GetPeriodsError, GetPeriodsResponse, ReturnType<typeof getPeriodsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getPeriods({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getPeriodsQueryKey(options)
-});
-
-export const getPeriodByIdQueryKey = (options: Options<GetPeriodByIdData>) => createQueryKey('getPeriodById', options);
-
-/**
- * Get period details by ID
- *
- * Disabled: currently not enabled in the backend. This contract remains documented for internal reference.
- *
- * Retrieves detailed period information by its kebab-case period ID.
- * Localization is based on the optional `language` query parameter (defaults to `en`).
- *
- *
- * @deprecated
- */
-export const getPeriodByIdOptions = (options: Options<GetPeriodByIdData>) => queryOptions<GetPeriodByIdResponse, GetPeriodByIdError, GetPeriodByIdResponse, ReturnType<typeof getPeriodByIdQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getPeriodById({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getPeriodByIdQueryKey(options)
-});
-
-/**
- * Search periods
- *
- * Disabled: currently not enabled in the backend. This contract remains documented for internal reference.
- *
- * Searches periods using a localized name query.
- * Provide an optional language and optionally a nameQuery to filter results.
- *
- *
- * @deprecated
- */
-export const searchPeriodsMutation = (options?: Partial<Options<SearchPeriodsData>>): UseMutationOptions<SearchPeriodsResponse, SearchPeriodsError, Options<SearchPeriodsData>> => {
-    const mutationOptions: UseMutationOptions<SearchPeriodsResponse, SearchPeriodsError, Options<SearchPeriodsData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await searchPeriods({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const getMyPartnerShopsQueryKey = (options?: Options<GetMyPartnerShopsData>) => createQueryKey('getMyPartnerShops', options);
-
-/**
- * List the authenticated user's partner shops
- *
- * Returns all shops currently linked to the authenticated user's `partnerShops` set.
- * Requires a valid Cognito JWT and always resolves shops for the current user only.
- *
- * Returns an empty array when the authenticated user currently has no linked partner shops.
- *
- */
-export const getMyPartnerShopsOptions = (options?: Options<GetMyPartnerShopsData>) => queryOptions<GetMyPartnerShopsResponse, GetMyPartnerShopsError, GetMyPartnerShopsResponse, ReturnType<typeof getMyPartnerShopsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getMyPartnerShops({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getMyPartnerShopsQueryKey(options)
-});
-
-export const getPartnerApplicationsQueryKey = (options?: Options<GetPartnerApplicationsData>) => createQueryKey('getPartnerApplications', options);
-
-/**
- * List user's partner shop applications
- *
- * Retrieves all partner shop applications submitted by the authenticated user.
- * Returns an empty array when no applications exist.
- * Requires valid Cognito JWT authentication.
- *
- */
-export const getPartnerApplicationsOptions = (options?: Options<GetPartnerApplicationsData>) => queryOptions<GetPartnerApplicationsResponse, GetPartnerApplicationsError, GetPartnerApplicationsResponse, ReturnType<typeof getPartnerApplicationsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getPartnerApplications({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getPartnerApplicationsQueryKey(options)
-});
-
-/**
- * Create a partner shop application
- *
- * Submits a new partner shop application for the authenticated user.
- * The application payload specifies either an existing shop (by `shopId`) or a new shop
- * (with name, type, domains, and optional metadata such as a primary URL, image, contact details,
- * address, and speciality keys).
- * The application is created with `businessState` `SUBMITTED` and `executionState` `PROCESSING`.
- * Both state fields are read-only and cannot be set by the client.
- * Returns the created application with HTTP 201.
- * Requires valid Cognito JWT authentication.
- *
- */
-export const postPartnerApplicationMutation = (options?: Partial<Options<PostPartnerApplicationData>>): UseMutationOptions<PostPartnerApplicationResponse, PostPartnerApplicationError, Options<PostPartnerApplicationData>> => {
-    const mutationOptions: UseMutationOptions<PostPartnerApplicationResponse, PostPartnerApplicationError, Options<PostPartnerApplicationData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postPartnerApplication({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<PutNewsletterSubscriptionResponse, PutNewsletterSubscriptionError, Options<PutNewsletterSubscriptionData2>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await putNewsletterSubscription({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
- * Delete a partner shop application
+ * Delete an unused ListingSource as admin
  *
- * Deletes the partner shop application identified by `partnerApplicationId` for the authenticated user.
- * Returns 204 No Content on success.
- * Returns 404 when no application with the given ID exists for this user.
- * Requires valid Cognito JWT authentication.
+ * Physically removes a ListingSource only when it has no ProductListings, raw-ingestion
+ * streams, approved PartnershipApplication reference, or retained existing-source proposal.
+ * The committed transaction explicitly removes its Partnership grants and owned ingestion
+ * configuration, including provider/webhook secrets. Enabled `WEB_CRAWL` is not a blocker:
+ * every new spider or scraper pass refreshes authoritative ListingSource scope before candidate
+ * selection, and a failed refresh skips that pass. Already-running work can race with deletion;
+ * the business raw-capture fence discards that missing-source result without recreating state.
+ * This operation does not retire or purge a used source. A repeated delete returns `404`.
  *
  */
-export const deletePartnerApplicationMutation = (options?: Partial<Options<DeletePartnerApplicationData>>): UseMutationOptions<DeletePartnerApplicationResponse, DeletePartnerApplicationError, Options<DeletePartnerApplicationData>> => {
-    const mutationOptions: UseMutationOptions<DeletePartnerApplicationResponse, DeletePartnerApplicationError, Options<DeletePartnerApplicationData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deletePartnerApplication({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const adminDeleteListingSourceMutation = (options?: Partial<Options<AdminDeleteListingSourceData>>): UseMutationOptions<AdminDeleteListingSourceResponse, AdminDeleteListingSourceError, Options<AdminDeleteListingSourceData>> => {
+  const mutationOptions: UseMutationOptions<AdminDeleteListingSourceResponse, AdminDeleteListingSourceError, Options<AdminDeleteListingSourceData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminDeleteListingSource({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
-export const getPartnerApplicationQueryKey = (options: Options<GetPartnerApplicationData>) => createQueryKey('getPartnerApplication', options);
+export const adminGetListingSourceQueryKey = (options: Options<AdminGetListingSourceData>) => createQueryKey('adminGetListingSource', options);
 
 /**
- * Get a specific partner shop application
+ * Get a ListingSource as admin
  *
- * Retrieves a single partner shop application by its ID for the authenticated user.
- * Returns 404 when no application with the given ID exists for this user.
- * Requires valid Cognito JWT authentication.
+ * Gets one ListingSource for an authenticated administrator.
+ *
+ * `listingSourceId` must be a valid ListingSource ID. The response uses the canonical ListingSource detail
+ * representation and never exposes provider credentials, webhook secrets, or crawler-local
+ * configuration.
  *
  */
-export const getPartnerApplicationOptions = (options: Options<GetPartnerApplicationData>) => queryOptions<GetPartnerApplicationResponse, GetPartnerApplicationError, GetPartnerApplicationResponse, ReturnType<typeof getPartnerApplicationQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getPartnerApplication({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getPartnerApplicationQueryKey(options)
+export const adminGetListingSourceOptions = (options: Options<AdminGetListingSourceData>) => queryOptions<AdminGetListingSourceResponse, AdminGetListingSourceError, AdminGetListingSourceResponse, ReturnType<typeof adminGetListingSourceQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminGetListingSource({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminGetListingSourceQueryKey(options)
 });
 
 /**
- * Update a partner shop application
+ * Update a ListingSource as admin
  *
- * Updates the fields of a specific partner shop application identified by `partnerApplicationId`.
- * Only fields present in the request body are applied; omitted fields are left unchanged.
- * The `businessState` and `executionState` fields are **read-only** and cannot be updated through this endpoint.
- * The request body is required and must not be empty.
- * Returns the updated application.
- * Returns 404 when no application with the given ID exists for this user.
- * Requires valid Cognito JWT authentication.
+ * Updates one ListingSource for an authenticated administrator.
  *
- */
-export const patchPartnerApplicationMutation = (options?: Partial<Options<PatchPartnerApplicationData>>): UseMutationOptions<PatchPartnerApplicationResponse, PatchPartnerApplicationError, Options<PatchPartnerApplicationData>> => {
-    const mutationOptions: UseMutationOptions<PatchPartnerApplicationResponse, PatchPartnerApplicationError, Options<PatchPartnerApplicationData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await patchPartnerApplication({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const adminGetPartnerApplicationsQueryKey = (options?: Options<AdminGetPartnerApplicationsData>) => createQueryKey('adminGetPartnerApplications', options);
-
-/**
- * List all partner shop applications
+ * `listingSourceId` must be a valid ListingSource ID. Omitted members remain unchanged; `null` clears only
+ * `woocommerceWebhookSecret`, `url`, `image`, and `referralConfiguration`. `name` and
+ * `ingestionConfiguration` are non-nullable and cannot be cleared. The ingestion
+ * configuration methods must match the ListingSource ingestion methods. An empty object is a
+ * valid no-op PATCH; an empty HTTP body is invalid.
  *
- * Retrieves all partner shop applications across all users.
- * This endpoint is restricted to authenticated users with the `ADMIN` role.
- * Returns an empty array when no applications exist.
+ * Renaming a ListingSource never changes its immutable slug. The response contains only the
+ * stable ListingSource ID and slug. WooCommerce webhook secrets are write-only: they are
+ * never returned or logged.
  *
  */
-export const adminGetPartnerApplicationsOptions = (options?: Options<AdminGetPartnerApplicationsData>) => queryOptions<AdminGetPartnerApplicationsResponse, AdminGetPartnerApplicationsError, AdminGetPartnerApplicationsResponse, ReturnType<typeof adminGetPartnerApplicationsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await adminGetPartnerApplications({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: adminGetPartnerApplicationsQueryKey(options)
-});
-
-export const adminGetPartnerApplicationQueryKey = (options: Options<AdminGetPartnerApplicationData>) => createQueryKey('adminGetPartnerApplication', options);
-
-/**
- * Get a specific partner shop application as admin
- *
- * Retrieves a single partner shop application by its ID across all users.
- * This endpoint is restricted to authenticated users with the `ADMIN` role.
- *
- */
-export const adminGetPartnerApplicationOptions = (options: Options<AdminGetPartnerApplicationData>) => queryOptions<AdminGetPartnerApplicationResponse, AdminGetPartnerApplicationError, AdminGetPartnerApplicationResponse, ReturnType<typeof adminGetPartnerApplicationQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await adminGetPartnerApplication({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: adminGetPartnerApplicationQueryKey(options)
-});
-
-/**
- * Update a partner shop application as admin
- *
- * Updates a specific partner shop application by ID across all users.
- * This endpoint is restricted to authenticated users with the `ADMIN` role.
- * Admins can update payload fields, but review decisions must be submitted through
- * `POST /api/v1/partner-applications/{partnerApplicationId}/decision`.
- * The request body is required and must not be empty.
- *
- */
-export const adminPatchPartnerApplicationMutation = (options?: Partial<Options<AdminPatchPartnerApplicationData>>): UseMutationOptions<AdminPatchPartnerApplicationResponse, AdminPatchPartnerApplicationError, Options<AdminPatchPartnerApplicationData>> => {
-    const mutationOptions: UseMutationOptions<AdminPatchPartnerApplicationResponse, AdminPatchPartnerApplicationError, Options<AdminPatchPartnerApplicationData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await adminPatchPartnerApplication({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-/**
- * Submit a partner shop application decision as admin
- *
- * Submits an `APPROVE` or `REJECT` decision for a specific partner shop application across all users.
- * This endpoint is restricted to authenticated users with the `ADMIN` role.
- * The targeted application must currently have `businessState` `IN_REVIEW`; otherwise the request fails with `409 Conflict`.
- * On success, the workflow resumes asynchronously and the returned application has `executionState` `PROCESSING`
- * while the decision is being applied.
- *
- */
-export const adminPostPartnerApplicationDecisionMutation = (options?: Partial<Options<AdminPostPartnerApplicationDecisionData>>): UseMutationOptions<AdminPostPartnerApplicationDecisionResponse, AdminPostPartnerApplicationDecisionError, Options<AdminPostPartnerApplicationDecisionData>> => {
-    const mutationOptions: UseMutationOptions<AdminPostPartnerApplicationDecisionResponse, AdminPostPartnerApplicationDecisionError, Options<AdminPostPartnerApplicationDecisionData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await adminPostPartnerApplicationDecision({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const adminUpdateListingSourceMutation = (options?: Partial<Options<AdminUpdateListingSourceData>>): UseMutationOptions<AdminUpdateListingSourceResponse, AdminUpdateListingSourceError, Options<AdminUpdateListingSourceData>> => {
+  const mutationOptions: UseMutationOptions<AdminUpdateListingSourceResponse, AdminUpdateListingSourceError, Options<AdminUpdateListingSourceData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminUpdateListingSource({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 export const oauthAuthorizeQueryKey = (options: Options<OauthAuthorizeData>) => createQueryKey('oauthAuthorize', options);
@@ -1811,20 +1593,21 @@ export const oauthAuthorizeQueryKey = (options: Options<OauthAuthorizeData>) => 
  *
  * On success the endpoint redirects (302) to the `redirect_uri` appending `code` and, if
  * supplied, `state` as query parameters. The single-use authorization code must be exchanged
- * for an access token via `POST /api/v1/oauth/token` before it expires.
+ * for an access token via `POST /api/v1/oauth/token` before it expires. A delegated caller
+ * must have `access-tokens:write` and every requested OAuth scope.
  *
  */
 export const oauthAuthorizeOptions = (options: Options<OauthAuthorizeData>) => queryOptions<unknown, OauthAuthorizeError, unknown, ReturnType<typeof oauthAuthorizeQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await oauthAuthorize({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: oauthAuthorizeQueryKey(options)
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await oauthAuthorize({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: oauthAuthorizeQueryKey(options)
 });
 
 /**
@@ -1844,17 +1627,17 @@ export const oauthAuthorizeOptions = (options: Options<OauthAuthorizeData>) => q
  *
  */
 export const oauthTokenMutation = (options?: Partial<Options<OauthTokenData>>): UseMutationOptions<OauthTokenResponse, OauthTokenError, Options<OauthTokenData>> => {
-    const mutationOptions: UseMutationOptions<OauthTokenResponse, OauthTokenError, Options<OauthTokenData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await oauthToken({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<OauthTokenResponse, OauthTokenError, Options<OauthTokenData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await oauthToken({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 export const oauthTokenByThirdPartyCodeQueryKey = (options: Options<OauthTokenByThirdPartyCodeData>) => createQueryKey('oauthTokenByThirdPartyCode', options);
@@ -1870,16 +1653,16 @@ export const oauthTokenByThirdPartyCodeQueryKey = (options: Options<OauthTokenBy
  *
  */
 export const oauthTokenByThirdPartyCodeOptions = (options: Options<OauthTokenByThirdPartyCodeData>) => queryOptions<OauthTokenByThirdPartyCodeResponse, OauthTokenByThirdPartyCodeError, OauthTokenByThirdPartyCodeResponse, ReturnType<typeof oauthTokenByThirdPartyCodeQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await oauthTokenByThirdPartyCode({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: oauthTokenByThirdPartyCodeQueryKey(options)
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await oauthTokenByThirdPartyCode({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: oauthTokenByThirdPartyCodeQueryKey(options)
 });
 
 /**
@@ -1894,17 +1677,17 @@ export const oauthTokenByThirdPartyCodeOptions = (options: Options<OauthTokenByT
  *
  */
 export const oauthRevokeMutation = (options?: Partial<Options<OauthRevokeData>>): UseMutationOptions<unknown, OauthRevokeError, Options<OauthRevokeData>> => {
-    const mutationOptions: UseMutationOptions<unknown, OauthRevokeError, Options<OauthRevokeData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await oauthRevoke({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<unknown, OauthRevokeError, Options<OauthRevokeData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await oauthRevoke({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
@@ -1919,128 +1702,593 @@ export const oauthRevokeMutation = (options?: Partial<Options<OauthRevokeData>>)
  *
  */
 export const oauthIntrospectMutation = (options?: Partial<Options<OauthIntrospectData>>): UseMutationOptions<OauthIntrospectResponse, OauthIntrospectError, Options<OauthIntrospectData>> => {
-    const mutationOptions: UseMutationOptions<OauthIntrospectResponse, OauthIntrospectError, Options<OauthIntrospectData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await oauthIntrospect({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+  const mutationOptions: UseMutationOptions<OauthIntrospectResponse, OauthIntrospectError, Options<OauthIntrospectData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await oauthIntrospect({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
-export const getOAuthClientsQueryKey = (options?: Options<GetOAuthClientsData>) => createQueryKey('getOAuthClients', options);
+export const adminListOAuthClientsQueryKey = (options?: Options<AdminListOAuthClientsData>) => createQueryKey('adminListOAuthClients', options);
 
 /**
- * List OAuth client metadata
+ * List OAuth client metadata for administration
  *
- * Lists registered OAuth client metadata records.
- * The returned `client_secret` value is masked and does not reveal the plaintext secret.
- * Requires valid Cognito JWT authentication.
+ * Lists registered OAuth client metadata for authenticated administrators.
+ *
+ * User and delegated-user principals must have the persisted `ADMIN` business role.
+ * Delegated Aura Historia access-token callers must also have the `access-tokens:read`
+ * capability. The OAuth protocol routes remain under `/api/v1/oauth`.
+ *
+ * Results use bounded keyset pagination in fixed `created` ascending, then OAuthClient ID ascending order. Page sizes are clamped to 1–100, with a default of 21. The
+ * `searchAfter` value is a JSON-encoded `[created RFC3339 timestamp, OAuthClient ID]`
+ * cursor; it is omitted on the terminal page and must be sent with the same filters.
+ *
+ * `clientId` is an exact OAuthClient ID filter. `name` is a case-insensitive substring filter.
+ * The response contains no plaintext client secret, secret hash, or masked secret value.
+ * Every success and error response uses `Cache-Control: no-store`.
  *
  */
-export const getOAuthClientsOptions = (options?: Options<GetOAuthClientsData>) => queryOptions<GetOAuthClientsResponse, GetOAuthClientsError, GetOAuthClientsResponse, ReturnType<typeof getOAuthClientsQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getOAuthClients({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getOAuthClientsQueryKey(options)
+export const adminListOAuthClientsOptions = (options?: Options<AdminListOAuthClientsData>) => queryOptions<AdminListOAuthClientsResponse, AdminListOAuthClientsError, AdminListOAuthClientsResponse, ReturnType<typeof adminListOAuthClientsQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminListOAuthClients({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminListOAuthClientsQueryKey(options)
 });
 
 /**
- * Create OAuth client metadata
+ * Create OAuth client metadata for administration
  *
- * Creates a new OAuth client metadata record.
- * The plaintext `client_secret` is returned only in this create response; later reads return
- * a masked secret display value.
- * Requires valid Cognito JWT authentication and the `ADMIN` role.
+ * Creates a new OAuth client metadata record for an authenticated administrator.
+ *
+ * User and delegated-user principals must have the persisted `ADMIN` business role.
+ * Delegated Aura Historia access-token callers must also have the `access-tokens:write`
+ * capability. The plaintext `client_secret` is returned only in this create response and
+ * is never logged or returned by later reads.
+ *
+ * Redirect URIs must be non-empty HTTPS URLs without fragments. Requested scopes must be
+ * supported OAuth scopes.
  *
  */
-export const postOAuthClientMutation = (options?: Partial<Options<PostOAuthClientData>>): UseMutationOptions<PostOAuthClientResponse, PostOAuthClientError, Options<PostOAuthClientData>> => {
-    const mutationOptions: UseMutationOptions<PostOAuthClientResponse, PostOAuthClientError, Options<PostOAuthClientData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await postOAuthClient({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const adminCreateOAuthClientMutation = (options?: Partial<Options<AdminCreateOAuthClientData>>): UseMutationOptions<AdminCreateOAuthClientResponse, AdminCreateOAuthClientError, Options<AdminCreateOAuthClientData>> => {
+  const mutationOptions: UseMutationOptions<AdminCreateOAuthClientResponse, AdminCreateOAuthClientError, Options<AdminCreateOAuthClientData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminCreateOAuthClient({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
 /**
- * Delete OAuth client metadata
+ * Delete OAuth client metadata for administration
  *
- * Deletes one OAuth client metadata record.
- * Requires valid Cognito JWT authentication and the `ADMIN` role.
+ * Deletes one OAuth client metadata record for an authenticated administrator.
+ *
+ * User and delegated-user principals must have the persisted `ADMIN` business role.
+ * Delegated Aura Historia access-token callers must also have the `access-tokens:write`
+ * capability. Deletion atomically invalidates pending authorization codes, OAuth-issued
+ * Aura access tokens, and their one-time third-party exchange codes. The OAuth protocol
+ * routes remain under `/api/v1/oauth`; this administrative mutation is not a protocol route.
  *
  */
-export const deleteOAuthClientMutation = (options?: Partial<Options<DeleteOAuthClientData>>): UseMutationOptions<DeleteOAuthClientResponse, DeleteOAuthClientError, Options<DeleteOAuthClientData>> => {
-    const mutationOptions: UseMutationOptions<DeleteOAuthClientResponse, DeleteOAuthClientError, Options<DeleteOAuthClientData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await deleteOAuthClient({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const adminDeleteOAuthClientMutation = (options?: Partial<Options<AdminDeleteOAuthClientData>>): UseMutationOptions<AdminDeleteOAuthClientResponse, AdminDeleteOAuthClientError, Options<AdminDeleteOAuthClientData>> => {
+  const mutationOptions: UseMutationOptions<AdminDeleteOAuthClientResponse, AdminDeleteOAuthClientError, Options<AdminDeleteOAuthClientData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminDeleteOAuthClient({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
 
-export const getOAuthClientQueryKey = (options: Options<GetOAuthClientData>) => createQueryKey('getOAuthClient', options);
+export const adminGetOAuthClientQueryKey = (options: Options<AdminGetOAuthClientData>) => createQueryKey('adminGetOAuthClient', options);
 
 /**
- * Get OAuth client metadata
+ * Get OAuth client metadata for administration
  *
- * Retrieves one OAuth client metadata record.
- * The returned `client_secret` value is masked and does not reveal the plaintext secret.
- * Requires valid Cognito JWT authentication.
+ * Retrieves one OAuth client metadata record for an authenticated administrator.
+ *
+ * User and delegated-user principals must have the persisted `ADMIN` business role.
+ * Delegated Aura Historia access-token callers must also have the `access-tokens:read`
+ * capability. The response contains client metadata, redirect URIs, and scopes, but never
+ * a plaintext client secret, secret hash, or masked secret value. Every success and error
+ * response uses `Cache-Control: no-store`.
  *
  */
-export const getOAuthClientOptions = (options: Options<GetOAuthClientData>) => queryOptions<GetOAuthClientResponse, GetOAuthClientError, GetOAuthClientResponse, ReturnType<typeof getOAuthClientQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getOAuthClient({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getOAuthClientQueryKey(options)
+export const adminGetOAuthClientOptions = (options: Options<AdminGetOAuthClientData>) => queryOptions<AdminGetOAuthClientResponse, AdminGetOAuthClientError, AdminGetOAuthClientResponse, ReturnType<typeof adminGetOAuthClientQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminGetOAuthClient({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminGetOAuthClientQueryKey(options)
 });
 
 /**
- * Update OAuth client metadata
+ * Update OAuth client metadata for administration
  *
- * Updates one OAuth client metadata record.
- * Omitted or `null` optional properties leave the existing value unchanged.
- * The returned `client_secret` value is masked and does not reveal the plaintext secret.
- * Requires valid Cognito JWT authentication and the `ADMIN` role.
+ * Updates one OAuth client metadata record for an authenticated administrator.
+ *
+ * Omitted properties leave existing values unchanged; every explicit `null` is invalid
+ * because OAuth metadata is non-nullable; and `{}` is a valid no-op.
+ *
+ * User and delegated-user principals must have the persisted `ADMIN` business role.
+ * Delegated Aura Historia access-token callers must also have the `access-tokens:write`
+ * capability. Redirect URIs remain non-empty HTTPS URLs without fragments, and requested
+ * scopes must be supported OAuth scopes.
+ *
+ * The response is secret-free. This operation never exposes or rotates the client secret.
+ * Every success and error response uses `Cache-Control: no-store`.
  *
  */
-export const patchOAuthClientMutation = (options?: Partial<Options<PatchOAuthClientData>>): UseMutationOptions<PatchOAuthClientResponse, PatchOAuthClientError, Options<PatchOAuthClientData>> => {
-    const mutationOptions: UseMutationOptions<PatchOAuthClientResponse, PatchOAuthClientError, Options<PatchOAuthClientData>> = {
-        mutationFn: async (fnOptions) => {
-            const { data } = await patchOAuthClient({
-                ...options,
-                ...fnOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
+export const adminPatchOAuthClientMutation = (options?: Partial<Options<AdminPatchOAuthClientData>>): UseMutationOptions<AdminPatchOAuthClientResponse, AdminPatchOAuthClientError, Options<AdminPatchOAuthClientData>> => {
+  const mutationOptions: UseMutationOptions<AdminPatchOAuthClientResponse, AdminPatchOAuthClientError, Options<AdminPatchOAuthClientData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminPatchOAuthClient({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+export const getListingSourceBySlugQueryKey = (options: Options<GetListingSourceBySlugData>) => createQueryKey('getListingSourceBySlug', options);
+
+/**
+ * Get a ListingSource by slug
+ */
+export const getListingSourceBySlugOptions = (options: Options<GetListingSourceBySlugData>) => queryOptions<GetListingSourceBySlugResponse, GetListingSourceBySlugError, GetListingSourceBySlugResponse, ReturnType<typeof getListingSourceBySlugQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getListingSourceBySlug({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getListingSourceBySlugQueryKey(options)
+});
+
+export const getMyListingSourcesQueryKey = (options?: Options<GetMyListingSourcesData>) => createQueryKey('getMyListingSources', options);
+
+/**
+ * List caller-administered ListingSources
+ */
+export const getMyListingSourcesOptions = (options?: Options<GetMyListingSourcesData>) => queryOptions<GetMyListingSourcesResponse, GetMyListingSourcesError, GetMyListingSourcesResponse, ReturnType<typeof getMyListingSourcesQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getMyListingSources({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getMyListingSourcesQueryKey(options)
+});
+
+export const getMyPartnershipApplicationsQueryKey = (options?: Options<GetMyPartnershipApplicationsData>) => createQueryKey('getMyPartnershipApplications', options);
+
+/**
+ * List caller PartnershipApplications
+ */
+export const getMyPartnershipApplicationsOptions = (options?: Options<GetMyPartnershipApplicationsData>) => queryOptions<GetMyPartnershipApplicationsResponse, GetMyPartnershipApplicationsError, GetMyPartnershipApplicationsResponse, ReturnType<typeof getMyPartnershipApplicationsQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getMyPartnershipApplications({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getMyPartnershipApplicationsQueryKey(options)
+});
+
+/**
+ * Submit a PartnershipApplication
+ */
+export const postPartnershipApplicationMutation = (options?: Partial<Options<PostPartnershipApplicationData>>): UseMutationOptions<PostPartnershipApplicationResponse, PostPartnershipApplicationError, Options<PostPartnershipApplicationData>> => {
+  const mutationOptions: UseMutationOptions<PostPartnershipApplicationResponse, PostPartnershipApplicationError, Options<PostPartnershipApplicationData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await postPartnershipApplication({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Withdraw a PartnershipApplication
+ */
+export const deleteOwnPartnershipApplicationMutation = (options?: Partial<Options<DeleteOwnPartnershipApplicationData>>): UseMutationOptions<DeleteOwnPartnershipApplicationResponse, DeleteOwnPartnershipApplicationError, Options<DeleteOwnPartnershipApplicationData>> => {
+  const mutationOptions: UseMutationOptions<DeleteOwnPartnershipApplicationResponse, DeleteOwnPartnershipApplicationError, Options<DeleteOwnPartnershipApplicationData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteOwnPartnershipApplication({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+export const getOwnPartnershipApplicationQueryKey = (options: Options<GetOwnPartnershipApplicationData>) => createQueryKey('getOwnPartnershipApplication', options);
+
+/**
+ * Get a caller PartnershipApplication
+ */
+export const getOwnPartnershipApplicationOptions = (options: Options<GetOwnPartnershipApplicationData>) => queryOptions<GetOwnPartnershipApplicationResponse, GetOwnPartnershipApplicationError, GetOwnPartnershipApplicationResponse, ReturnType<typeof getOwnPartnershipApplicationQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getOwnPartnershipApplication({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getOwnPartnershipApplicationQueryKey(options)
+});
+
+export const getAdminOverviewQueryKey = (options?: Options<GetAdminOverviewData>) => createQueryKey('getAdminOverview', options);
+
+/**
+ * Get the administrator operational overview
+ *
+ * Returns a bounded landing-page summary for authenticated administrators. `schemaVersion` is
+ * required so clients can select a compatible response decoder. Every counter is read from
+ * authoritative PostgreSQL by one aggregate statement; OpenSearch and other rebuildable
+ * projections are not used.
+ *
+ * `listingSources.methodAssignments` counts source-method assignments, not distinct sources,
+ * so its values may sum to more than `listingSources.total`. ProductListing availability
+ * counts include only `ACTIVE` listings; `activeWithoutAvailability` identifies active rows
+ * without a current source availability assertion. Responses contain no PII, secrets, or
+ * embedded collections and always use `Cache-Control: no-store`.
+ *
+ */
+export const getAdminOverviewOptions = (options?: Options<GetAdminOverviewData>) => queryOptions<GetAdminOverviewResponse, GetAdminOverviewError, GetAdminOverviewResponse, ReturnType<typeof getAdminOverviewQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await getAdminOverview({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: getAdminOverviewQueryKey(options)
+});
+
+export const adminSearchPartnershipsQueryKey = (options?: Options<AdminSearchPartnershipsData>) => createQueryKey('adminSearchPartnerships', options);
+
+/**
+ * List Partnerships for administration
+ *
+ * Lists active Partnerships for authenticated administrators.
+ *
+ * Results use bounded keyset cursor pagination in fixed `created` descending, then
+ * Partnership ID descending order. Page sizes are clamped to 1–100, with a default
+ * of 21. The returned `searchAfter` value is a JSON-encoded
+ * `[created RFC3339 timestamp, Partnership ID]` cursor; it is omitted on the terminal
+ * page and should be sent with the same filters for the next page.
+ *
+ * Optional `partyId`, `memberUserId`, and `listingSourceId` filters are exact object-ID
+ * matches and are combined when supplied. Each result is a safe summary containing
+ * the Partnership ID, Party ID/immutable slug/name, member count, ListingSource-grant
+ * count, and creation/update timestamps. Member identities, grant identities, Party
+ * contact data, persistence versions, provider credentials, webhook secrets, and
+ * crawler-local configuration are never returned. Responses always use
+ * `Cache-Control: no-store`.
+ *
+ */
+export const adminSearchPartnershipsOptions = (options?: Options<AdminSearchPartnershipsData>) => queryOptions<AdminSearchPartnershipsResponse, AdminSearchPartnershipsError, AdminSearchPartnershipsResponse, ReturnType<typeof adminSearchPartnershipsQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminSearchPartnerships({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminSearchPartnershipsQueryKey(options)
+});
+
+/**
+ * Dissolve a Partnership
+ *
+ * Semantically deletes a Partnership for an authenticated administrator. The Partnership row
+ * remains as a `DISSOLVED` historical reference for approved PartnershipApplications, while
+ * all current membership and ListingSource-grant rows are removed in the same PostgreSQL
+ * transaction. ListingSources, Parties, users, ProductListings, and applications are not
+ * deleted. Repeating a successful dissolution is an idempotent `204` no-op. No user can
+ * retain Partnership authorization after the transaction commits. All responses use
+ * `Cache-Control: no-store`.
+ *
+ */
+export const adminDissolvePartnershipMutation = (options?: Partial<Options<AdminDissolvePartnershipData>>): UseMutationOptions<AdminDissolvePartnershipResponse, AdminDissolvePartnershipError, Options<AdminDissolvePartnershipData>> => {
+  const mutationOptions: UseMutationOptions<AdminDissolvePartnershipResponse, AdminDissolvePartnershipError, Options<AdminDissolvePartnershipData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminDissolvePartnership({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+export const adminGetPartnershipQueryKey = (options: Options<AdminGetPartnershipData>) => createQueryKey('adminGetPartnership', options);
+
+/**
+ * Get a Partnership for administration
+ *
+ * Returns one established Partnership for an authenticated administrator.
+ *
+ * The response includes the Partnership identity, its Party reference, current member user
+ * references, and current ListingSource grant references. Member and grant references are
+ * ordered by ID and each array is bounded to at most 100 entries. `memberCount` and
+ * `listingSourceGrantCount` are complete counts, including references beyond the bounded arrays.
+ *
+ * Missing Partnerships return `PARTNERSHIP_NOT_FOUND`. All success and error responses use
+ * `Cache-Control: no-store` because member user identifiers are returned.
+ *
+ */
+export const adminGetPartnershipOptions = (options: Options<AdminGetPartnershipData>) => queryOptions<AdminGetPartnershipResponse, AdminGetPartnershipError, AdminGetPartnershipResponse, ReturnType<typeof adminGetPartnershipQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminGetPartnership({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminGetPartnershipQueryKey(options)
+});
+
+/**
+ * Revoke a ListingSource from a Partnership
+ *
+ * Idempotently removes an existing ListingSource grant from an existing Partnership for an
+ * authenticated administrator. Only the targeted Partnership/ListingSource join row is
+ * removed; the Partnership, ListingSource, members, and historical PartnershipApplications
+ * are preserved. An absent grant is a successful no-op. The operation is committed in one
+ * PostgreSQL transaction and returns no response body. All success and error responses use
+ * `Cache-Control: no-store`.
+ *
+ */
+export const adminRevokePartnershipListingSourceMutation = (options?: Partial<Options<AdminRevokePartnershipListingSourceData>>): UseMutationOptions<AdminRevokePartnershipListingSourceResponse, AdminRevokePartnershipListingSourceError, Options<AdminRevokePartnershipListingSourceData>> => {
+  const mutationOptions: UseMutationOptions<AdminRevokePartnershipListingSourceResponse, AdminRevokePartnershipListingSourceError, Options<AdminRevokePartnershipListingSourceData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminRevokePartnershipListingSource({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Grant a ListingSource to a Partnership
+ *
+ * Idempotently grants an existing ListingSource to an existing Partnership for an
+ * authenticated administrator. The Partnership and ListingSource must belong to the same
+ * Party; a mismatched Party is rejected with `409 CONFLICT`. An existing grant is a
+ * successful no-op. The operation is committed in one PostgreSQL transaction and returns no
+ * response body. All success and error responses use `Cache-Control: no-store`.
+ *
+ */
+export const adminGrantPartnershipListingSourceMutation = (options?: Partial<Options<AdminGrantPartnershipListingSourceData>>): UseMutationOptions<AdminGrantPartnershipListingSourceResponse, AdminGrantPartnershipListingSourceError, Options<AdminGrantPartnershipListingSourceData>> => {
+  const mutationOptions: UseMutationOptions<AdminGrantPartnershipListingSourceResponse, AdminGrantPartnershipListingSourceError, Options<AdminGrantPartnershipListingSourceData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminGrantPartnershipListingSource({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Revoke a user membership in a Partnership
+ *
+ * Idempotently removes the target user membership from the specified Partnership for an
+ * authenticated administrator. The target user and Partnership must already exist. A missing
+ * membership is a successful no-op. Only the membership row is removed; the user, Partnership,
+ * ListingSource, and historical PartnershipApplication records are preserved. The operation is
+ * committed in one PostgreSQL transaction and returns no response body. All success and error
+ * responses use `Cache-Control: no-store`.
+ *
+ */
+export const adminRevokePartnershipMembershipMutation = (options?: Partial<Options<AdminRevokePartnershipMembershipData>>): UseMutationOptions<AdminRevokePartnershipMembershipResponse, AdminRevokePartnershipMembershipError, Options<AdminRevokePartnershipMembershipData>> => {
+  const mutationOptions: UseMutationOptions<AdminRevokePartnershipMembershipResponse, AdminRevokePartnershipMembershipError, Options<AdminRevokePartnershipMembershipData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminRevokePartnershipMembership({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Grant a user membership in a Partnership
+ *
+ * Idempotently grants the target user membership in the specified Partnership for an
+ * authenticated administrator. The target user and Partnership must already exist. An
+ * existing membership is a successful no-op. The operation is committed in one PostgreSQL
+ * transaction and returns no response body. All success and error responses use
+ * `Cache-Control: no-store`.
+ *
+ */
+export const adminGrantPartnershipMembershipMutation = (options?: Partial<Options<AdminGrantPartnershipMembershipData>>): UseMutationOptions<AdminGrantPartnershipMembershipResponse, AdminGrantPartnershipMembershipError, Options<AdminGrantPartnershipMembershipData>> => {
+  const mutationOptions: UseMutationOptions<AdminGrantPartnershipMembershipResponse, AdminGrantPartnershipMembershipError, Options<AdminGrantPartnershipMembershipData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminGrantPartnershipMembership({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+export const adminSearchPartnershipApplicationsQueryKey = (options?: Options<AdminSearchPartnershipApplicationsData>) => createQueryKey('adminSearchPartnershipApplications', options);
+
+/**
+ * Search PartnershipApplications for administration
+ *
+ * Searches PartnershipApplications for authenticated administrators.
+ *
+ * `state` and `proposalType` accept repeated exact canonical values. `applicantUserId`
+ * restricts the applicant. `listingSourceId` matches the approved ListingSource or an
+ * existing ListingSource proposed by the application. `created` and `updated` accept
+ * inclusive RFC3339 ranges using `min` and `max` query members.
+ *
+ * Results use deterministic keyset cursor pagination. The default sort is `created` descending;
+ * override it by providing both `sort` and `order`. Valid sort fields are `created` and `updated`;
+ * PartnershipApplication ID is always the final deterministic tie-breaker. Page sizes are clamped
+ * to 1–100, with a default of 21. The returned JSON `[timestamp, PartnershipApplication ID]` `searchAfter`
+ * cursor is omitted on the terminal page and must be sent with the same filters and sort.
+ * Results contain review-queue summary data only and never expose persistence version values.
+ * Responses always use `Cache-Control: no-store`.
+ *
+ */
+export const adminSearchPartnershipApplicationsOptions = (options?: Options<AdminSearchPartnershipApplicationsData>) => queryOptions<AdminSearchPartnershipApplicationsResponse, AdminSearchPartnershipApplicationsError, AdminSearchPartnershipApplicationsResponse, ReturnType<typeof adminSearchPartnershipApplicationsQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminSearchPartnershipApplications({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminSearchPartnershipApplicationsQueryKey(options)
+});
+
+export const adminGetPartnershipApplicationQueryKey = (options: Options<AdminGetPartnershipApplicationData>) => createQueryKey('adminGetPartnershipApplication', options);
+
+/**
+ * Get a PartnershipApplication for administration
+ *
+ * Retrieves a single PartnershipApplication for authenticated administrators.
+ * The response includes the applicant, state, proposal, and nullable approval references. All responses send `Cache-Control: no-store`.
+ *
+ */
+export const adminGetPartnershipApplicationOptions = (options: Options<AdminGetPartnershipApplicationData>) => queryOptions<AdminGetPartnershipApplicationResponse, AdminGetPartnershipApplicationError, AdminGetPartnershipApplicationResponse, ReturnType<typeof adminGetPartnershipApplicationQueryKey>>({
+  queryFn: async ({ queryKey, signal }) => {
+    const { data } = await adminGetPartnershipApplication({
+      ...options,
+      ...queryKey[0],
+      signal,
+      throwOnError: true
+    });
+    return data;
+  },
+  queryKey: adminGetPartnershipApplicationQueryKey(options)
+});
+
+/**
+ * Mark a PartnershipApplication in review as admin
+ *
+ * Marks a PartnershipApplication in review for an authenticated administrator.
+ *
+ * This operation accepts no request body and only performs the domain-authoritative
+ * `SUBMITTED` to `IN_REVIEW` transition. It does not accept arbitrary state assignment.
+ * The response contains the resulting admin PartnershipApplication representation and
+ * responses always use `Cache-Control: no-store`.
+ *
+ */
+export const adminMarkPartnershipApplicationInReviewMutation = (options?: Partial<Options<AdminMarkPartnershipApplicationInReviewData>>): UseMutationOptions<AdminMarkPartnershipApplicationInReviewResponse, AdminMarkPartnershipApplicationInReviewError, Options<AdminMarkPartnershipApplicationInReviewData>> => {
+  const mutationOptions: UseMutationOptions<AdminMarkPartnershipApplicationInReviewResponse, AdminMarkPartnershipApplicationInReviewError, Options<AdminMarkPartnershipApplicationInReviewData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminMarkPartnershipApplicationInReview({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
+};
+
+/**
+ * Decide a PartnershipApplication as admin
+ *
+ * Approves or rejects a PartnershipApplication for an authenticated administrator.
+ *
+ * The request accepts only `APPROVE` or `REJECT`; arbitrary state assignment is not supported.
+ * State-changing decisions follow the domain lifecycle and are accepted only from `IN_REVIEW`;
+ * terminal replays retain their existing idempotent behavior. Approval atomically creates or finds
+ * the Party and Partnership, grants membership and
+ * ListingSource access, updates the application, and creates the applicant notification.
+ * Rejection preserves the existing application and notification semantics. Responses always
+ * use `Cache-Control: no-store`.
+ *
+ */
+export const adminDecidePartnershipApplicationMutation = (options?: Partial<Options<AdminDecidePartnershipApplicationData>>): UseMutationOptions<AdminDecidePartnershipApplicationResponse, AdminDecidePartnershipApplicationError, Options<AdminDecidePartnershipApplicationData>> => {
+  const mutationOptions: UseMutationOptions<AdminDecidePartnershipApplicationResponse, AdminDecidePartnershipApplicationError, Options<AdminDecidePartnershipApplicationData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await adminDecidePartnershipApplication({
+        ...options,
+        ...fnOptions,
+        throwOnError: true
+      });
+      return data;
+    }
+  };
+  return mutationOptions;
 };
